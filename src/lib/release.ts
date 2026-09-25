@@ -13,13 +13,26 @@ export const RELEASES_PAGE = 'https://github.com/Noctorium/Noctorium-Installer/r
 export type Download = {
   name: string;
   url: string;
-  /** Rounded to the nearest sensible unit; a download of this size deserves a warning. */
+  /** Rounded to the nearest sensible unit; some of these are hundreds of megabytes. */
   size: string;
 };
 
 export type Release = {
   version: string;
-  downloads: {
+  /**
+   * The small programs that fetch the rest: `pc/` in Rust, `phone/` in Dart with Flutter.
+   *
+   * What somebody downloads once. Each asks GitHub for the current release, checks what it fetched
+   * against the checksum published beside it, and hands it to Windows, to apt or dnf, or to Android's
+   * own package installer. Everything after that is the application's own updater.
+   */
+  installers: {
+    windows?: Download;
+    linux?: Download;
+    android?: Download;
+  };
+  /** The application itself, for somebody who would rather have the file than a program that fetches it. */
+  direct: {
     windows?: Download;
     windowsMsi?: Download;
     android?: Download;
@@ -31,11 +44,11 @@ export type Release = {
 type Asset = { name: string; browser_download_url: string; size: number };
 
 /**
- * Picks one asset per platform.
+ * Picks one asset by name.
  *
- * Every rule here is a suffix, and deliberately so: a release carries both the player's APK and the
- * phone installer's, and a rule as loose as "ends with .apk" would offer whichever GitHub happened to
- * list first. The same shape of mistake as the `.exe` rules -- there are three of those in a release.
+ * Every rule is a suffix plus, where it matters, whether the name says "installer". A release carries two
+ * `.apk` files -- the player's and the phone installer's -- and three `.exe` files, so a rule as loose as
+ * "ends with .apk" offers whichever GitHub happened to list first, which is right about half the time.
  */
 function pick(assets: Asset[], matches: (lower: string) => boolean): Download | undefined {
   const found = assets.find((asset) => matches(asset.name.toLowerCase()));
@@ -60,12 +73,18 @@ export async function latestRelease(): Promise<Release | null> {
     if (!reply.ok) return null;
     const body = (await reply.json()) as { tag_name?: string; assets?: Asset[] };
     const assets = body.assets ?? [];
+    const installer = (n: string) => n.includes('installer');
     return {
       version: (body.tag_name ?? '').replace(/^v/, ''),
-      downloads: {
-        windows: pick(assets, (n) => n.endsWith('-setup.exe') && !n.includes('installer')),
+      installers: {
+        windows: pick(assets, (n) => installer(n) && n.endsWith('.exe')),
+        linux: pick(assets, (n) => installer(n) && n.endsWith('linux-x64')),
+        android: pick(assets, (n) => installer(n) && n.endsWith('.apk')),
+      },
+      direct: {
+        windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
         windowsMsi: pick(assets, (n) => n.endsWith('.msi')),
-        android: pick(assets, (n) => n.endsWith('.apk') && !n.includes('installer')),
+        android: pick(assets, (n) => !installer(n) && n.endsWith('.apk')),
         debian: pick(assets, (n) => n.endsWith('.deb')),
         fedora: pick(assets, (n) => n.endsWith('.rpm')),
       },
