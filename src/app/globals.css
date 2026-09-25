@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * The application's own colours, so the page and the player look like one thing.
+ *
+ * `#8B5CF6` and `#D8B4FE` are NoctoriumPurpleStrong and NoctoriumLavender from Theme.kt, converted to the
+ * HSL triples Tailwind wants. The page is dark because the player is: a night-coloured application with a
+ * white brochure in front of it reads as two products.
+ */
+@layer base {
+  :root {
+    --background: 258 22% 5%;
+    --foreground: 260 20% 96%;
+    --card: 258 18% 9%;
+    --card-foreground: 260 20% 96%;
+    --muted: 258 14% 14%;
+    --muted-foreground: 258 10% 66%;
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 269 97% 85%;
+    --accent-foreground: 258 40% 12%;
+    --border: 258 16% 18%;
+    --ring: 258 90% 66%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* The violet cast the player's window has, rather than a flat black. */
+    background-image:
+      radial-gradient(60rem 40rem at 50% -10rem, hsl(258 90% 66% / 0.16), transparent 70%),
+      radial-gradient(40rem 30rem at 85% 20%, hsl(269 97% 85% / 0.06), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  /* Anything that moves here is decoration, and decoration stops when somebody asks it to. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
