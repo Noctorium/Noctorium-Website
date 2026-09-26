@@ -65,12 +65,28 @@ function readableSize(bytes: number): string {
 export async function latestRelease(): Promise<Release | null> {
   try {
     const reply = await fetch(RELEASE_API, {
-      headers: { Accept: 'application/vnd.github+json' },
+      headers: {
+        Accept: 'application/vnd.github+json',
+        /*
+         * Required, and the whole page quietly depends on it.
+         *
+         * GitHub answers an API request with no User-Agent `403 Request forbidden by administrative
+         * rules`, and `fetch` does not always supply one. The page caught it and fell back to a bare link
+         * to the releases page -- which looks like a design choice rather than a failure, so it sat there
+         * through a release without anybody noticing. Hence the header, and the complaint below.
+         */
+        'User-Agent': 'noctorium-website',
+      },
       // Long enough that a burst of visitors is one request, short enough that a release shows up the
       // same hour it is published.
       next: { revalidate: 900 },
     });
-    if (!reply.ok) return null;
+    if (!reply.ok) {
+      // Into the build or function log, because the page itself cannot say this without becoming an
+      // error page over something that is only a stale download link.
+      console.error(`Noctorium: GitHub answered ${reply.status} for the latest release`);
+      return null;
+    }
     const body = (await reply.json()) as { tag_name?: string; assets?: Asset[] };
     const assets = body.assets ?? [];
     const installer = (n: string) => n.includes('installer');
