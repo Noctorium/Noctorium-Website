@@ -1,5 +1,18 @@
 import Image from 'next/image';
-import { Github, Heart, ListMusic, Lock, MonitorSmartphone, Radio } from 'lucide-react';
+import {
+  Activity,
+  BatteryCharging,
+  Download,
+  Github,
+  Heart,
+  Library,
+  ListMusic,
+  Lock,
+  MicVocal,
+  MonitorSmartphone,
+  Palette,
+  Radio,
+} from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
 import { latestRelease } from '@/lib/release';
 
@@ -63,7 +76,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="grid gap-4 pb-16 sm:grid-cols-2">
+      <section className="grid gap-4 pb-16 sm:grid-cols-2 lg:grid-cols-3">
         <Feature
           icon={<Radio className="size-5" />}
           title="Both libraries, side by side"
@@ -77,22 +90,52 @@ export default async function Home() {
         <Feature
           icon={<ListMusic className="size-5" />}
           title="Playlists you can actually edit"
-          body="Make one on either account, add tracks to it, rename it, change who can see it, delete it. Private by default — a playlist made in one tap is not one you meant to publish."
+          body="Make one on either account, add tracks, put them in order, rename it, make it public or private, delete it — from the desktop or the phone. Long ones open whole. Private by default."
+        />
+        <Feature
+          icon={<Library className="size-5" />}
+          title="Your Spotify library too"
+          body="Your Spotify playlists and liked songs, in your order. Spotify gives no audio to other players, so each song is found on YouTube Music or SoundCloud as it plays."
+        />
+        <Feature
+          icon={<MicVocal className="size-5" />}
+          title="Lyrics that follow along"
+          body="Synced lyrics from eight sources, with the line being sung lit up. Switch source right on the lyrics, and later songs open on your pick when it has them."
         />
         <Feature
           icon={<Lock className="size-5" />}
           title="Signing in, on their page"
-          body="Your password goes to Google's or SoundCloud's own page, shown inside Noctorium, never to a form of ours. Only the session is kept, and it stays on your machine."
+          body="Your password goes to Google's or SoundCloud's own page, shown inside Noctorium, never to a form of ours. Only the session is kept, on your device. Or sign the desktop in by scanning a code with your phone."
+        />
+        <Feature
+          icon={<Palette className="size-5" />}
+          title="Make it yours"
+          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens, and Windows 98 and XP. Accent colours, liquid glass, player bar layouts, six seek bars, and animations you can switch off."
+        />
+        <Feature
+          icon={<BatteryCharging className="size-5" />}
+          title="Keeps playing"
+          body="Close the window and the music carries on from the tray, or have Noctorium start with Windows. On the phone it plays on with the screen locked, even on phones that like to close apps."
+        />
+        <Feature
+          icon={<Download className="size-5" />}
+          title="Offline, when you want it"
+          body="Keep a song or a whole playlist to play without a connection. On the desktop they are saved as MP3s with their covers; on the phone, only over Wi-Fi if you like."
+        />
+        <Feature
+          icon={<Activity className="size-5" />}
+          title="Scrobbling and Discord"
+          body="Every listen goes to Last.fm and ListenBrainz, and the desktop shows what you are playing on Discord."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
-          title="Desktop and phone"
-          body="Windows, Debian and Fedora builds, and an Android app. Both are built from one shared core, so the two behave the same rather than nearly the same."
+          title="Desktop and phone, together"
+          body="Windows, Debian, Fedora and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second."
         />
         <Feature
           icon={<Github className="size-5" />}
           title="Open, and yours"
-          body="Every repository is public and the releases carry checksums. No account with us, no telemetry, nothing to subscribe to."
+          body="Every repository is public and the releases carry checksums. No telemetry and nothing to subscribe to; an account with us only if you want your listening counted."
         />
       </section>
 
