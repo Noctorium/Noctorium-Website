@@ -110,7 +110,7 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens, and Windows 98 and XP. Accent colours, liquid glass, player bar layouts, six seek bars, and animations you can switch off."
+          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens, and Windows 98 and XP. Accent colours, liquid glass, six seek bars, six layouts for now playing with a cover that can turn like a record, and animations you can switch off."
         />
         <Feature
           icon={<BatteryCharging className="size-5" />}
