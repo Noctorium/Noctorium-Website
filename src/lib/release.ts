@@ -29,7 +29,11 @@ export type Release = {
   installers: {
     windows?: Download;
     linux?: Download;
+    linuxAppImage?: Download;
     android?: Download;
+    /** The same installers, in a terminal. */
+    windowsCli?: Download;
+    linuxCli?: Download;
   };
   /** The application itself, for somebody who would rather have the file than a program that fetches it. */
   direct: {
@@ -38,6 +42,14 @@ export type Release = {
     android?: Download;
     debian?: Download;
     fedora?: Download;
+    arch?: Download;
+    appImage?: Download;
+    flatpak?: Download;
+  };
+  /** Noctorium in a terminal, and `noctorium web` for the browsers in the house. */
+  cli: {
+    windows?: Download;
+    linux?: Download;
   };
 };
 
@@ -90,12 +102,18 @@ export async function latestRelease(): Promise<Release | null> {
     const body = (await reply.json()) as { tag_name?: string; assets?: Asset[] };
     const assets = body.assets ?? [];
     const installer = (n: string) => n.includes('installer');
+    // The terminal installers carry "installer-cli"; the window ones only "installer".
+    const terminal = (n: string) => n.includes('installer-cli');
+    const player = (n: string) => n.startsWith('noctorium-cli-');
     return {
       version: (body.tag_name ?? '').replace(/^v/, ''),
       installers: {
-        windows: pick(assets, (n) => installer(n) && n.endsWith('.exe')),
-        linux: pick(assets, (n) => installer(n) && n.endsWith('linux-x64')),
+        windows: pick(assets, (n) => installer(n) && !terminal(n) && n.endsWith('.exe')),
+        linux: pick(assets, (n) => installer(n) && !terminal(n) && n.endsWith('linux-x64')),
+        linuxAppImage: pick(assets, (n) => installer(n) && n.endsWith('.appimage')),
         android: pick(assets, (n) => installer(n) && n.endsWith('.apk')),
+        windowsCli: pick(assets, (n) => terminal(n) && n.endsWith('.exe')),
+        linuxCli: pick(assets, (n) => terminal(n) && n.endsWith('linux-x64')),
       },
       direct: {
         windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
@@ -103,6 +121,13 @@ export async function latestRelease(): Promise<Release | null> {
         android: pick(assets, (n) => !installer(n) && n.endsWith('.apk')),
         debian: pick(assets, (n) => n.endsWith('.deb')),
         fedora: pick(assets, (n) => n.endsWith('.rpm')),
+        arch: pick(assets, (n) => n.endsWith('.pkg.tar.zst')),
+        appImage: pick(assets, (n) => !installer(n) && n.endsWith('.appimage')),
+        flatpak: pick(assets, (n) => n.endsWith('.flatpak')),
+      },
+      cli: {
+        windows: pick(assets, (n) => player(n) && n.endsWith('windows-x64.zip')),
+        linux: pick(assets, (n) => player(n) && n.endsWith('linux-x64.tar.gz')),
       },
     };
   } catch {

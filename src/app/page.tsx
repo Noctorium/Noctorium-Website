@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import {
   Activity,
+  AppWindow,
   BatteryCharging,
+  Globe,
+  SquareTerminal,
+  Smartphone,
   Download,
   Github,
   Heart,
@@ -14,7 +18,7 @@ import {
   Radio,
 } from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
-import { latestRelease } from '@/lib/release';
+import { latestRelease, RELEASES_PAGE, type Release } from '@/lib/release';
 
 const GITHUB = 'https://github.com/Noctorium';
 
@@ -76,6 +80,8 @@ export default async function Home() {
         </div>
       </section>
 
+      <Platforms release={release} />
+
       <section className="grid gap-4 pb-16 sm:grid-cols-2 lg:grid-cols-3">
         <Feature
           icon={<Radio className="size-5" />}
@@ -130,7 +136,7 @@ export default async function Home() {
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
-          body="Windows, Debian, Fedora and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second."
+          body="Windows, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second."
         />
         <Feature
           icon={<Github className="size-5" />}
@@ -149,6 +155,45 @@ export default async function Home() {
         </a>
       </footer>
     </main>
+  );
+}
+
+/** Four ways in, the same library behind each. */
+function Platforms({ release }: { release: Release | null }) {
+  const cli = release?.cli ?? {};
+  return (
+    <section className="pb-16">
+      <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">Wherever you listen</h2>
+      <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">
+        The same library, queue and likes on each — they all stand on one shared core.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Platform icon={<AppWindow className="size-5" />} title="Desktop" body="Windows and Linux, in a window of its own, in the tray when you close it." />
+        <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android, with the lock screen, the notification and playing on with the screen off." />
+        <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse.">
+          <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.windows?.url ?? RELEASES_PAGE}>Windows</a>
+            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.linux?.url ?? RELEASES_PAGE}>Linux</a>
+          </div>
+        </Platform>
+        <Platform icon={<Globe className="size-5" />} title="Browser" body="noctorium web serves the player to every browser in the house. Scan the code with a phone and it plays there.">
+          <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium web</code>
+          <p className="mt-3 text-xs text-muted-foreground">Runs on your computer, not ours: your sessions never leave it.</p>
+        </Platform>
+      </div>
+    </section>
+  );
+}
+
+function Platform({ icon, title, body, children }: { icon: React.ReactNode; title: string; body: string; children?: React.ReactNode }) {
+  return (
+    <div className="rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80">
+      <div className="inline-flex size-10 items-center justify-center rounded-lg bg-primary/15 text-accent">{icon}</div>
+      <h3 className="mt-4 font-semibold text-foreground">{title}</h3>
+      <p className="mt-2 text-pretty text-sm leading-relaxed">{body}</p>
+      {children}
+    </div>
   );
 }
 

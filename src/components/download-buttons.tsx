@@ -51,7 +51,7 @@ export function DownloadButtons({ release }: { release: Release | null }) {
             <Terminal className="size-4" />
             Linux installer <span className="opacity-60">({linux.size})</span>
           </a>
-          <span className="opacity-60"> — Debian and Fedora</span>
+          <span className="opacity-60"> — Debian, Fedora, openSUSE and Arch, or an AppImage or Flatpak anywhere</span>
         </p>
       )}
 
@@ -67,10 +67,13 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           <Direct label="Android .apk" file={direct.android} />
           <Direct label="Debian .deb" file={direct.debian} />
           <Direct label="Fedora .rpm" file={direct.fedora} />
+          <Direct label="Arch .pkg.tar.zst" file={direct.arch} />
+          <Direct label="Linux .AppImage" file={direct.appImage} />
+          <Direct label="Flatpak" file={direct.flatpak} />
         </div>
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          These are the whole application — mpv and yt-dlp travel inside them, which is where the size
-          goes.
+          These are the whole application, its own Java and Chromium inside. On Linux, mpv comes from your
+          distribution, except in the Flatpak, which carries its own.
         </p>
       </details>
 
