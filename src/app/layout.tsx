@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Noctorium — one player for YouTube Music and SoundCloud',
   description:
     'A music player for YouTube Music and SoundCloud together. Your own accounts, your own likes and ' +
-    'playlists, on the desktop and on your phone.',
+    'playlists, on the desktop, on your phone, in a terminal, or right in your browser.',
   icons: { icon: '/favicon.ico' },
   openGraph: {
     title: 'Noctorium',
