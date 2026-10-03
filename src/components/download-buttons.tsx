@@ -64,6 +64,15 @@ export function DownloadButtons({ release }: { release: Release | null }) {
         </p>
         <CopyCommand label="Windows" command="irm https://noctorium.vercel.app/install | iex" />
         <CopyCommand label="Linux" command="curl -fsSL https://noctorium.vercel.app/install | sh" />
+        <details className="mt-1">
+          <summary className="cursor-pointer list-none text-center text-xs text-muted-foreground transition hover:text-foreground">
+            <span className="underline decoration-dotted underline-offset-4">If this site is ever down: the same, straight from GitHub</span>
+          </summary>
+          <div className="mt-2 flex flex-col gap-2">
+            <CopyCommand label="Windows" command="irm https://raw.githubusercontent.com/Noctorium/Noctorium-Installer/main/scripts/install.ps1 | iex" />
+            <CopyCommand label="Linux" command="curl -fsSL https://raw.githubusercontent.com/Noctorium/Noctorium-Installer/main/scripts/install.sh | sh" />
+          </div>
+        </details>
       </div>
 
       <details className="group mx-auto mt-8 max-w-lg">
