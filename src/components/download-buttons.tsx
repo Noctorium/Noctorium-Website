@@ -1,5 +1,6 @@
-import { HardDriveDownload, ShieldCheck, Smartphone, Terminal } from 'lucide-react';
-import { RELEASES_PAGE, type Download, type Release } from '@/lib/release';
+import { Globe, HardDriveDownload, ShieldCheck, Smartphone, Terminal } from 'lucide-react';
+import { CopyCommand } from '@/components/copy-command';
+import { PLAYER, RELEASES_PAGE, type Download, type Release } from '@/lib/release';
 import { cn } from '@/lib/utils';
 
 /**
@@ -32,6 +33,7 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           label="Android"
           note={android?.size}
         />
+        <Secondary href={PLAYER} icon={<Globe className="size-5" />} label="Play in the browser" />
       </div>
 
       <p className="mx-auto mt-5 flex max-w-md items-start justify-center gap-2 text-center text-sm text-muted-foreground">
@@ -54,6 +56,15 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           <span className="opacity-60"> — Debian, Fedora, openSUSE and Arch, or an AppImage or Flatpak anywhere</span>
         </p>
       )}
+
+      <div id="install" className="mx-auto mt-7 flex max-w-xl scroll-mt-8 flex-col gap-2">
+        <p className="text-center text-sm text-muted-foreground">
+          Or from a terminal. It asks whether you want Noctorium, the Noctorium CLI or both, and checks what it
+          downloads against the published checksums.
+        </p>
+        <CopyCommand label="Windows" command="irm https://noctorium.vercel.app/install | iex" />
+        <CopyCommand label="Linux" command="curl -fsSL https://noctorium.vercel.app/install | sh" />
+      </div>
 
       <details className="group mx-auto mt-8 max-w-lg">
         <summary className="cursor-pointer list-none text-center text-sm text-muted-foreground transition hover:text-foreground">

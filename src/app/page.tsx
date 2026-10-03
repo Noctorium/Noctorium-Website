@@ -18,7 +18,7 @@ import {
   Radio,
 } from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
-import { latestRelease, RELEASES_PAGE, type Release } from '@/lib/release';
+import { latestRelease, PLAYER, RELEASES_PAGE, type Release } from '@/lib/release';
 
 const GITHUB = 'https://github.com/Noctorium';
 
@@ -71,8 +71,9 @@ export default async function Home() {
           className="mt-5 max-w-xl animate-rise text-pretty text-lg text-muted-foreground"
           style={{ animationDelay: '120ms' }}
         >
-          YouTube Music and SoundCloud, in one library, on your desktop and your phone. Your own accounts —
-          your likes and playlists are written to them, not kept in a copy here.
+          YouTube Music and SoundCloud, in one library, on your desktop, your phone, in a terminal or right
+          in your browser. Your own accounts — your likes and playlists are written to them, not kept in a copy
+          here.
         </p>
 
         <div className="mt-11 w-full animate-rise" style={{ animationDelay: '180ms' }}>
@@ -170,16 +171,20 @@ function Platforms({ release }: { release: Release | null }) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Platform icon={<AppWindow className="size-5" />} title="Desktop" body="Windows and Linux, in a window of its own, in the tray when you close it." />
         <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android, with the lock screen, the notification and playing on with the screen off." />
-        <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse.">
+        <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse. Pick it in the one-line installer above.">
           <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.windows?.url ?? RELEASES_PAGE}>Windows</a>
             <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.linux?.url ?? RELEASES_PAGE}>Linux</a>
           </div>
         </Platform>
-        <Platform icon={<Globe className="size-5" />} title="Browser" body="noctorium web serves the player to every browser in the house. Scan the code with a phone and it plays there.">
-          <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium web</code>
-          <p className="mt-3 text-xs text-muted-foreground">Runs on your computer, not ours: your sessions never leave it.</p>
+        <Platform icon={<Globe className="size-5" />} title="Browser" body="Open the web player and play — nothing to install, no account, your likes and playlists kept in the browser.">
+          <a className="mt-3 inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:brightness-110" href={PLAYER}>
+            Open the web player
+          </a>
+          <p className="mt-3 text-xs text-muted-foreground">
+            With your own accounts: <code className="text-accent">noctorium web</code> serves it from your computer to every browser in the house.
+          </p>
         </Platform>
       </div>
     </section>
