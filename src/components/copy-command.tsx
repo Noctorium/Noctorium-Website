@@ -9,7 +9,7 @@ export function CopyCommand({ label, command }: { label: string; command: string
   return (
     <div className="flex items-center gap-2 rounded-lg border border-border/70 bg-card/60 py-1.5 pl-3 pr-1.5 text-left">
       <span className="w-16 shrink-0 text-xs text-muted-foreground">{label}</span>
-      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap py-1 text-xs text-accent sm:text-sm">{command}</code>
+      <code className="min-w-0 flex-1 break-all py-1 text-xs text-accent sm:text-sm">{command}</code>
       <button
         type="button"
         aria-label={`Copy the ${label} command`}
