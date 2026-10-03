@@ -1,4 +1,4 @@
-import { Globe, HardDriveDownload, ShieldCheck, Smartphone, Terminal } from 'lucide-react';
+import { Apple, Globe, HardDriveDownload, ShieldCheck, Smartphone, Terminal } from 'lucide-react';
 import { CopyCommand } from '@/components/copy-command';
 import { PLAYER, RELEASES_PAGE, type Download, type Release } from '@/lib/release';
 import { cn } from '@/lib/utils';
@@ -28,6 +28,12 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           note={windows?.size}
         />
         <Secondary
+          href={direct.macArm?.url ?? RELEASES_PAGE}
+          icon={<Apple className="size-5" />}
+          label="macOS"
+          note={direct.macArm?.size}
+        />
+        <Secondary
           href={android?.url ?? RELEASES_PAGE}
           icon={<Smartphone className="size-5" />}
           label="Android"
@@ -42,6 +48,18 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           A small installer. It fetches the current version, checks it against the checksum published
           beside it, and hands it to Windows or to Android.
         </span>
+      </p>
+
+      <p className="mx-auto mt-4 max-w-md text-center text-sm text-muted-foreground">
+        The macOS button is for Apple silicon, every Mac since late 2020.{' '}
+        <a
+          className="underline decoration-dotted underline-offset-4 hover:text-foreground"
+          href={direct.macIntel?.url ?? RELEASES_PAGE}
+        >
+          An Intel Mac
+        </a>{' '}
+        has its own. Noctorium is not signed by Apple, so the first time, macOS asks: choose Open Anyway in
+        System Settings, Privacy &amp; Security — or install it with the line below, which it does not ask about.
       </p>
 
       {linux && (
@@ -63,14 +81,14 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           downloads against the published checksums.
         </p>
         <CopyCommand label="Windows" command="irm https://noctorium.vercel.app/install | iex" />
-        <CopyCommand label="Linux" command="curl -fsSL https://noctorium.vercel.app/install | sh" />
+        <CopyCommand label="macOS, Linux" command="curl -fsSL https://noctorium.vercel.app/install | sh" />
         <details className="mt-1">
           <summary className="cursor-pointer list-none text-center text-xs text-muted-foreground transition hover:text-foreground">
             <span className="underline decoration-dotted underline-offset-4">If this site is ever down: the same, straight from GitHub</span>
           </summary>
           <div className="mt-2 flex flex-col gap-2">
             <CopyCommand label="Windows" command="irm https://raw.githubusercontent.com/Noctorium/Noctorium-Installer/main/scripts/install.ps1 | iex" />
-            <CopyCommand label="Linux" command="curl -fsSL https://raw.githubusercontent.com/Noctorium/Noctorium-Installer/main/scripts/install.sh | sh" />
+            <CopyCommand label="macOS, Linux" command="curl -fsSL https://raw.githubusercontent.com/Noctorium/Noctorium-Installer/main/scripts/install.sh | sh" />
           </div>
         </details>
       </div>
@@ -90,10 +108,12 @@ export function DownloadButtons({ release }: { release: Release | null }) {
           <Direct label="Arch .pkg.tar.zst" file={direct.arch} />
           <Direct label="Linux .AppImage" file={direct.appImage} />
           <Direct label="Flatpak" file={direct.flatpak} />
+          <Direct label="macOS, Apple silicon" file={direct.macArm} />
+          <Direct label="macOS, Intel" file={direct.macIntel} />
         </div>
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          These are the whole application, its own Java and Chromium inside. On Linux, mpv comes from your
-          distribution, except in the Flatpak, which carries its own.
+          These are the whole application, its own Java and Chromium inside, and on Windows and the Mac its own
+          mpv. On Linux, mpv comes from your distribution, except in the Flatpak, which carries its own.
         </p>
       </details>
 

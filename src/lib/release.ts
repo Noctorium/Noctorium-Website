@@ -37,6 +37,8 @@ export type Release = {
     /** The same installers, in a terminal. */
     windowsCli?: Download;
     linuxCli?: Download;
+    /** One program for both kinds of Mac. */
+    macCli?: Download;
   };
   /** The application itself, for somebody who would rather have the file than a program that fetches it. */
   direct: {
@@ -48,11 +50,16 @@ export type Release = {
     arch?: Download;
     appImage?: Download;
     flatpak?: Download;
+    /** The Mac's disk images: Apple silicon, and Intel. */
+    macArm?: Download;
+    macIntel?: Download;
   };
   /** Noctorium in a terminal, and `noctorium web` for the browsers in the house. */
   cli: {
     windows?: Download;
     linux?: Download;
+    macArm?: Download;
+    macIntel?: Download;
   };
 };
 
@@ -117,6 +124,7 @@ export async function latestRelease(): Promise<Release | null> {
         android: pick(assets, (n) => installer(n) && n.endsWith('.apk')),
         windowsCli: pick(assets, (n) => terminal(n) && n.endsWith('.exe')),
         linuxCli: pick(assets, (n) => terminal(n) && n.endsWith('linux-x64')),
+        macCli: pick(assets, (n) => terminal(n) && n.endsWith('-macos')),
       },
       direct: {
         windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
@@ -127,10 +135,14 @@ export async function latestRelease(): Promise<Release | null> {
         arch: pick(assets, (n) => n.endsWith('.pkg.tar.zst')),
         appImage: pick(assets, (n) => !installer(n) && n.endsWith('.appimage')),
         flatpak: pick(assets, (n) => n.endsWith('.flatpak')),
+        macArm: pick(assets, (n) => n.endsWith('-macos-arm64.dmg')),
+        macIntel: pick(assets, (n) => n.endsWith('-macos-x64.dmg')),
       },
       cli: {
         windows: pick(assets, (n) => player(n) && n.endsWith('windows-x64.zip')),
         linux: pick(assets, (n) => player(n) && n.endsWith('linux-x64.tar.gz')),
+        macArm: pick(assets, (n) => player(n) && n.endsWith('macos-arm64.tar.gz')),
+        macIntel: pick(assets, (n) => player(n) && n.endsWith('macos-x64.tar.gz')),
       },
     };
   } catch {

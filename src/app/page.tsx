@@ -137,7 +137,7 @@ export default async function Home() {
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
-          body="Windows, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second."
+          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second."
         />
         <Feature
           icon={<Github className="size-5" />}
@@ -169,13 +169,14 @@ function Platforms({ release }: { release: Release | null }) {
         The same library, queue and likes on each — they all stand on one shared core.
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Platform icon={<AppWindow className="size-5" />} title="Desktop" body="Windows and Linux, in a window of its own, in the tray when you close it." />
+        <Platform icon={<AppWindow className="size-5" />} title="Desktop" body="Windows, macOS and Linux, in a window of its own, in the tray or the menu bar when you close it." />
         <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android, with the lock screen, the notification and playing on with the screen off." />
         <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse. Pick it in the one-line installer above.">
           <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.windows?.url ?? RELEASES_PAGE}>Windows</a>
             <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.linux?.url ?? RELEASES_PAGE}>Linux</a>
+            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.macArm?.url ?? RELEASES_PAGE}>macOS</a>
           </div>
         </Platform>
         <Platform icon={<Globe className="size-5" />} title="Browser" body="Open the web player and play — nothing to install, no account, your likes and playlists kept in the browser.">
