@@ -119,7 +119,7 @@ export function NoteBlocks({ blocks }: { blocks: Block[] }) {
             );
           case 'code':
             return (
-              <pre key={i} className="overflow-x-auto rounded-md bg-background/70 px-3 py-2 text-xs text-accent">
+              <pre key={i} className="whitespace-pre-wrap break-all rounded-md bg-background/70 px-3 py-2 text-xs text-accent">
                 <code>{block.text}</code>
               </pre>
             );
