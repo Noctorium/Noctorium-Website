@@ -65,6 +65,59 @@ export type Release = {
 
 type Asset = { name: string; browser_download_url: string; size: number };
 
+/** One published release's notes, for What's new. */
+export type ReleaseNote = {
+  version: string;
+  /** When it was published, written out: "3 October 2026". */
+  date: string;
+  /** The notes as written in Noctorium-Installer's notes/, which is what each release is published with. */
+  body: string;
+  url: string;
+};
+
+export const NOTES_PAGE = 'https://github.com/Noctorium/Noctorium-Installer/tree/main/notes';
+
+/**
+ * The last few published releases' notes, newest first.
+ *
+ * Asked of the same API as the downloads and on the same fifteen-minute clock, so What's new changes the
+ * hour a release goes out, with nothing to edit here. Drafts and pre-releases are left out: a draft is a
+ * release not yet made, and the page only speaks of ones people can download.
+ */
+export async function recentReleases(count = 3): Promise<ReleaseNote[]> {
+  try {
+    const reply = await fetch(`${RELEASE_API.replace(/\/latest$/, '')}?per_page=${count + 3}`, {
+      headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'noctorium-website' },
+      next: { revalidate: 900 },
+    });
+    if (!reply.ok) {
+      console.error(`Noctorium: GitHub answered ${reply.status} for the release list`);
+      return [];
+    }
+    const releases = (await reply.json()) as {
+      tag_name?: string;
+      body?: string;
+      html_url?: string;
+      published_at?: string;
+      draft?: boolean;
+      prerelease?: boolean;
+    }[];
+    return releases
+      .filter((r) => !r.draft && !r.prerelease && r.tag_name && r.body?.trim())
+      .slice(0, count)
+      .map((r) => ({
+        version: r.tag_name!.replace(/^v/, ''),
+        date: r.published_at
+          ? new Date(r.published_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+          : '',
+        body: r.body!,
+        url: r.html_url ?? RELEASES_PAGE,
+      }));
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Picks one asset by name.
  *

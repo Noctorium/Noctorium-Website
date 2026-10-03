@@ -18,12 +18,13 @@ import {
   Radio,
 } from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
-import { latestRelease, PLAYER, RELEASES_PAGE, type Release } from '@/lib/release';
+import { WhatsNew } from '@/components/whats-new';
+import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, type Release } from '@/lib/release';
 
 const GITHUB = 'https://github.com/Noctorium';
 
 export default async function Home() {
-  const release = await latestRelease();
+  const [release, notes] = await Promise.all([latestRelease(), recentReleases(3)]);
 
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-4 sm:px-6">
@@ -82,6 +83,8 @@ export default async function Home() {
       </section>
 
       <Platforms release={release} />
+
+      <WhatsNew releases={notes} />
 
       <section className="grid gap-4 pb-16 sm:grid-cols-2 lg:grid-cols-3">
         <Feature
