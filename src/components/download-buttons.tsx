@@ -46,7 +46,8 @@ export function DownloadButtons({ release }: { release: Release | null }) {
         <ShieldCheck className="mt-0.5 size-4 shrink-0 text-accent/80" />
         <span>
           A small installer. It fetches the current version, checks it against the checksum published
-          beside it, and hands it to Windows or to Android.
+          beside it, and hands it to Windows or to Android. After that, Noctorium updates itself — on
+          Windows with one progress bar, opening again when it is done.
         </span>
       </p>
 
