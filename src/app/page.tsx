@@ -2,7 +2,9 @@ import Image from 'next/image';
 import {
   Activity,
   AppWindow,
+  AudioLines,
   BatteryCharging,
+  Disc3,
   Globe,
   SquareTerminal,
   Smartphone,
@@ -149,6 +151,8 @@ export default async function Home() {
         />
       </section>
 
+      <Goals />
+
       <footer className="mt-auto flex flex-col items-center gap-2 border-t border-border/60 py-8 text-sm text-muted-foreground">
         <p>
           Noctorium plays from YouTube Music and SoundCloud using your own accounts. It is not affiliated
@@ -190,6 +194,28 @@ function Platforms({ release }: { release: Release | null }) {
             With your own accounts: <code className="text-accent">noctorium web</code> serves it from your computer to every browser in the house.
           </p>
         </Platform>
+      </div>
+    </section>
+  );
+}
+
+/** Where Noctorium is heading: goals to work towards, said as such rather than as promises with dates. */
+function Goals() {
+  return (
+    <section id="goals" className="scroll-mt-8 pb-16">
+      <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">On the way</h2>
+      <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">What Noctorium is working towards next.</p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Platform
+          icon={<Disc3 className="size-5" />}
+          title="Bandcamp support"
+          body="Bandcamp as a service of its own: search it, play its albums and tracks, and find your Bandcamp collection in the library beside the others."
+        />
+        <Platform
+          icon={<AudioLines className="size-5" />}
+          title="Full Spotify support"
+          body="Spotify as a whole service, not only a library to read: search it, browse its albums and artists, and like songs and edit playlists on Spotify itself, as Noctorium already does on YouTube Music and SoundCloud."
+        />
       </div>
     </section>
   );
