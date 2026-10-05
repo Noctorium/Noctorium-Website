@@ -45,9 +45,9 @@ export function DownloadButtons({ release }: { release: Release | null }) {
       <p className="mx-auto mt-5 flex max-w-md items-start justify-center gap-2 text-center text-sm text-muted-foreground">
         <ShieldCheck className="mt-0.5 size-4 shrink-0 text-accent/80" />
         <span>
-          A small installer. It fetches the current version, checks it against the checksum published
-          beside it, and hands it to Windows or to Android. After that, Noctorium updates itself — on
-          Windows with one progress bar, opening again when it is done.
+          A small installer, for Noctorium, the Noctorium CLI or both. It fetches the current version, checks
+          it against the checksum published beside it, and installs it. After that, both update themselves —
+          Noctorium on Windows with one progress bar, opening again when it is done, and the CLI once a day.
         </span>
       </p>
 
@@ -78,8 +78,8 @@ export function DownloadButtons({ release }: { release: Release | null }) {
 
       <div id="install" className="mx-auto mt-7 flex max-w-xl scroll-mt-8 flex-col gap-2">
         <p className="text-center text-sm text-muted-foreground">
-          Or from a terminal. It asks whether you want Noctorium, the Noctorium CLI or both, and checks what it
-          downloads against the published checksums.
+          Or from a terminal. It asks whether you want Noctorium, the Noctorium CLI or both, downloads them at
+          once, and checks them against the published checksums.
         </p>
         <CopyCommand label="Windows" command="irm https://noctorium.vercel.app/install | iex" />
         <CopyCommand label="macOS, Linux" command="curl -fsSL https://noctorium.vercel.app/install | sh" />
