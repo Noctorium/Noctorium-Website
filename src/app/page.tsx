@@ -13,7 +13,6 @@ import {
   Github,
   Heart,
   Library,
-  ListMusic,
   Lock,
   MicVocal,
   MonitorSmartphone,
@@ -97,13 +96,8 @@ export default async function Home() {
         />
         <Feature
           icon={<Heart className="size-5" />}
-          title="Likes go to the real account"
-          body="Liking a song in Noctorium likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK. Open the service tomorrow on any other device and it is there, because it was never only here."
-        />
-        <Feature
-          icon={<ListMusic className="size-5" />}
-          title="Playlists you can actually edit"
-          body="Make one on either account, add tracks, put them in order, rename it, make it public or private, delete it — from the desktop or the phone. Long ones open whole. Private by default."
+          title="Your real accounts"
+          body="Liking a song likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK, and the playlists you make, rename, reorder or make private live on the service. Open it tomorrow on any other device and it is all there, because it was never only here."
         />
         <Feature
           icon={<AudioLines className="size-5" />}
@@ -138,7 +132,12 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens, and Windows 98 and XP. Accent colours, liquid glass, six seek bars, six layouts for now playing with a cover that can turn like a record, playback speed, an equaliser, and keys of your own in the terminal."
+          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, liquid glass, eleven seek bars, ten player bars and eleven layouts for now playing — a turntable, Cover flow, the title as a poster — with playback speed, an equaliser, and keys of your own in the terminal."
+        />
+        <Feature
+          icon={<AppWindow className="size-5" />}
+          title="Windows 98 and XP, for real"
+          body="Pick 98 and Noctorium becomes that desktop: grey bevelled buttons, navy title bars, scroll bars with arrows, and Now playing in windows on the teal desktop. Pick XP for Luna's blue, its task pane and the green start button. Both with a taskbar and a clock you can put away — on the computer, the phone, in a terminal and in the browser."
         />
         <Feature
           icon={<BatteryCharging className="size-5" />}
