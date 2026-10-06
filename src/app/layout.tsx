@@ -15,14 +15,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Noctorium — one player for YouTube Music and SoundCloud',
+  title: 'Noctorium — one player for all your music',
   description:
-    'A music player for YouTube Music and SoundCloud together. Your own accounts, your own likes and ' +
-    'playlists, on Windows, macOS, Linux and Android, in a terminal, or right in your browser.',
+    'A music player for YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music together. Your own accounts, ' +
+    'your own likes and playlists, on Windows, macOS, Linux and Android, in a terminal, or right in your browser.',
   icons: { icon: '/favicon.ico' },
   openGraph: {
     title: 'Noctorium',
-    description: 'One player for YouTube Music and SoundCloud.',
+    description: 'One player for YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music.',
     images: ['/noctorium.png'],
     type: 'website',
   },

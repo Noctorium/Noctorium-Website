@@ -6,6 +6,7 @@ import {
   BatteryCharging,
   Disc3,
   Globe,
+  ListPlus,
   SquareTerminal,
   Smartphone,
   Download,
@@ -64,7 +65,7 @@ export default async function Home() {
           className="mt-9 animate-rise text-balance text-4xl font-bold tracking-tight sm:text-6xl"
           style={{ animationDelay: '60ms' }}
         >
-          Two services.{' '}
+          All your music.{' '}
           <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             One player.
           </span>
@@ -74,9 +75,9 @@ export default async function Home() {
           className="mt-5 max-w-xl animate-rise text-pretty text-lg text-muted-foreground"
           style={{ animationDelay: '120ms' }}
         >
-          YouTube Music and SoundCloud, in one library, on your desktop, your phone, in a terminal or right
-          in your browser. Your own accounts — your likes and playlists are written to them, not kept in a copy
-          here.
+          YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music, in one library, on your desktop, your phone,
+          in a terminal or right in your browser. Your own accounts — your likes and playlists are written to them,
+          not kept in a copy here.
         </p>
 
         <div className="mt-11 w-full animate-rise" style={{ animationDelay: '180ms' }}>
@@ -91,13 +92,13 @@ export default async function Home() {
       <section className="grid gap-4 pb-16 sm:grid-cols-2 lg:grid-cols-3">
         <Feature
           icon={<Radio className="size-5" />}
-          title="Both libraries, side by side"
-          body="Search once and see results from both. Your playlists and liked tracks from each service sit in the same library, and a queue can hold songs from either."
+          title="Every library, side by side"
+          body="Search once and see results from every service you use. Your playlists and liked songs from each sit in the same library, and a queue can hold songs from any of them."
         />
         <Feature
           icon={<Heart className="size-5" />}
           title="Likes go to the real account"
-          body="Liking a track in Noctorium likes it on SoundCloud or YouTube Music. Open the service tomorrow on any other device and it is there, because it was never only here."
+          body="Liking a song in Noctorium likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK. Open the service tomorrow on any other device and it is there, because it was never only here."
         />
         <Feature
           icon={<ListMusic className="size-5" />}
@@ -105,9 +106,24 @@ export default async function Home() {
           body="Make one on either account, add tracks, put them in order, rename it, make it public or private, delete it — from the desktop or the phone. Long ones open whole. Private by default."
         />
         <Feature
+          icon={<AudioLines className="size-5" />}
+          title="Spotify, two ways"
+          body="Any account: your playlists and liked songs, Spotify in search, and hearts that save to Liked Songs, each song played from YouTube Music. With Premium, Spotify songs play in your own Spotify app instead — on this computer, your phone or a speaker — while Noctorium follows along."
+        />
+        <Feature
+          icon={<Disc3 className="size-5" />}
+          title="Bandcamp, with nothing to sign in to"
+          body="Search it, open its albums and artists, and get its best-sellers and new releases on Home, in the genres you pick. Give your Bandcamp name and your collection is in the library. Songs are bought there, not downloaded."
+        />
+        <Feature
           icon={<Library className="size-5" />}
-          title="Your Spotify library too"
-          body="Your Spotify playlists and liked songs, in your order. Spotify gives no audio to other players, so each song is found on YouTube Music or SoundCloud as it plays."
+          title="VK Music"
+          body="Sign in on VK's own page: My music, your playlists, search and VK's suggestions. VK offers its music to no other app, so this uses your session the way its web player does — its terms do not allow that, and many songs do not play outside Russia."
+        />
+        <Feature
+          icon={<ListPlus className="size-5" />}
+          title="Up next, from the same service"
+          body="When the queue runs out, it carries on from the last song's own service: YouTube Music's radio, SoundCloud's related tracks, more from a Bandcamp artist, VK's suggestions, Spotify's own autoplay. See them coming, keep or drop any, and find the queue where you left it next time."
         />
         <Feature
           icon={<MicVocal className="size-5" />}
@@ -117,12 +133,12 @@ export default async function Home() {
         <Feature
           icon={<Lock className="size-5" />}
           title="Signing in, on their page"
-          body="Your password goes to Google's or SoundCloud's own page, shown inside Noctorium, never to a form of ours. Only the session is kept, on your device. Or sign the desktop in by scanning a code with your phone."
+          body="Your password goes to the service's own page — Google's, SoundCloud's, Spotify's or VK's — never to a form of ours. Only the session is kept, on your device. Or sign the desktop in by scanning a code with your phone."
         />
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens, and Windows 98 and XP. Accent colours, liquid glass, six seek bars, six layouts for now playing with a cover that can turn like a record, and animations you can switch off."
+          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens, and Windows 98 and XP. Accent colours, liquid glass, six seek bars, six layouts for now playing with a cover that can turn like a record, playback speed, an equaliser, and keys of your own in the terminal."
         />
         <Feature
           icon={<BatteryCharging className="size-5" />}
@@ -151,12 +167,10 @@ export default async function Home() {
         />
       </section>
 
-      <Goals />
-
       <footer className="mt-auto flex flex-col items-center gap-2 border-t border-border/60 py-8 text-sm text-muted-foreground">
         <p>
-          Noctorium plays from YouTube Music and SoundCloud using your own accounts. It is not affiliated
-          with either.
+          Noctorium plays from YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music using your own accounts.
+          It is not affiliated with any of them.
         </p>
         <a href={GITHUB} className="transition hover:text-foreground">
           github.com/Noctorium
@@ -194,28 +208,6 @@ function Platforms({ release }: { release: Release | null }) {
             With your own accounts: <code className="text-accent">noctorium web</code> serves it from your computer to every browser in the house.
           </p>
         </Platform>
-      </div>
-    </section>
-  );
-}
-
-/** Where Noctorium is heading: goals to work towards, said as such rather than as promises with dates. */
-function Goals() {
-  return (
-    <section id="goals" className="scroll-mt-8 pb-16">
-      <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">On the way</h2>
-      <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">What Noctorium is working towards next.</p>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Platform
-          icon={<Disc3 className="size-5" />}
-          title="Bandcamp support"
-          body="Bandcamp as a service of its own: search it, play its albums and tracks, and find your Bandcamp collection in the library beside the others."
-        />
-        <Platform
-          icon={<AudioLines className="size-5" />}
-          title="Full Spotify support"
-          body="Spotify as a whole service, not only a library to read: search it, browse its albums and artists, and like songs and edit playlists on Spotify itself, as Noctorium already does on YouTube Music and SoundCloud."
-        />
       </div>
     </section>
   );
