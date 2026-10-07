@@ -132,7 +132,7 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, liquid glass, eleven seek bars, ten player bars and eleven layouts for now playing — a turntable, Cover flow, the title as a poster — with playback speed, an equaliser, and keys of your own in the terminal."
+          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, liquid glass, eleven seek bars, ten player bars and eleven layouts for now playing — a turntable, Cover flow, the title as a poster — with playback speed on a button of its own, an equaliser, and keys of your own in the terminal."
         />
         <Feature
           icon={<AppWindow className="size-5" />}
