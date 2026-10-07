@@ -117,7 +117,7 @@ export default async function Home() {
         <Feature
           icon={<ListPlus className="size-5" />}
           title="Up next, from the same service"
-          body="When the queue runs out, it carries on from the last song's own service: YouTube Music's radio, SoundCloud's related tracks, more from a Bandcamp artist, VK's suggestions, Spotify's own autoplay. See them coming, keep or drop any, and find the queue where you left it next time."
+          body="When the queue runs out, it carries on from the last song's own service: YouTube Music's radio, SoundCloud's related tracks, more from a Bandcamp artist, VK's suggestions, Spotify's own autoplay. See them coming, keep or drop any, switch autoplay on or off from the queue itself, and find the queue where you left it next time."
         />
         <Feature
           icon={<MicVocal className="size-5" />}
@@ -142,7 +142,7 @@ export default async function Home() {
         <Feature
           icon={<BatteryCharging className="size-5" />}
           title="Keeps playing"
-          body="Close the window and the music carries on from the tray, or have Noctorium start with Windows. On the phone it plays on with the screen locked, even on phones that like to close apps."
+          body="Close the window and the music carries on from the tray, or have Noctorium start with Windows. On the phone it plays on with the screen locked, even on phones that like to close apps, and a song that will not start after the phone has slept starts itself again where it was."
         />
         <Feature
           icon={<Download className="size-5" />}
