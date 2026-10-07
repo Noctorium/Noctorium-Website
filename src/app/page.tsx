@@ -4,6 +4,7 @@ import {
   AppWindow,
   AudioLines,
   BatteryCharging,
+  ChartColumn,
   Disc3,
   Globe,
   ListPlus,
@@ -24,6 +25,9 @@ import { WhatsNew } from '@/components/whats-new';
 import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, type Release } from '@/lib/release';
 
 const GITHUB = 'https://github.com/Noctorium';
+
+/** The account service's own site, where the same statistics are read in a browser. */
+const STATS_SITE = 'https://noctorium-service.vercel.app';
 
 export default async function Home() {
   const [release, notes] = await Promise.all([latestRelease(), recentReleases(3)]);
@@ -85,6 +89,8 @@ export default async function Home() {
       </section>
 
       <Platforms release={release} />
+
+      <Stats release={release} />
 
       <WhatsNew releases={notes} />
 
@@ -207,6 +213,64 @@ function Platforms({ release }: { release: Release | null }) {
             With your own accounts: <code className="text-accent">noctorium web</code> serves it from your computer to every browser in the house.
           </p>
         </Platform>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * What the optional account counts, and the two places to read it.
+ *
+ * The downloads are only listed once a release has them: a link to a file that is not there yet falls back to
+ * the releases page, which would not have it either.
+ */
+function Stats({ release }: { release: Release | null }) {
+  const stats = release?.stats ?? {};
+  const files = [
+    ['Windows', stats.windows],
+    ['macOS', stats.macArm],
+    ['Intel Mac', stats.macIntel],
+    ['Linux', stats.linux],
+    ['Android', stats.android],
+  ] as const;
+  const available = files.filter(([, file]) => file);
+  return (
+    <section className="pb-16">
+      <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
+        <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
+          <ChartColumn className="size-5" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Your listening, counted</h2>
+          <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
+            Sign in to a Noctorium account, if you want one, and the player counts what you play on your computer and
+            your phone. Read it on the statistics site, or in Noctorium Stats, an app of its own: the last week, month
+            or year or all of it, your top songs and artists, how the services share your listening, the hours and
+            days you listen most, and how many days in a row.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+            <a
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:brightness-110"
+              href={STATS_SITE}
+            >
+              Open your statistics
+            </a>
+            {available.length > 0 && (
+              <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                <span>Noctorium Stats for</span>
+                {available.map(([label, file]) => (
+                  <a
+                    key={label}
+                    className="underline decoration-dotted underline-offset-4 hover:text-foreground"
+                    href={file!.url}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

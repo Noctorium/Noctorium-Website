@@ -61,6 +61,14 @@ export type Release = {
     macArm?: Download;
     macIntel?: Download;
   };
+  /** Noctorium Stats: what the Noctorium account counts, in an app of its own. Missing before 0.13.0. */
+  stats: {
+    windows?: Download;
+    linux?: Download;
+    macArm?: Download;
+    macIntel?: Download;
+    android?: Download;
+  };
 };
 
 type Asset = { name: string; browser_download_url: string; size: number };
@@ -168,6 +176,8 @@ export async function latestRelease(): Promise<Release | null> {
     // The terminal installers carry "installer-cli"; the window ones only "installer".
     const terminal = (n: string) => n.includes('installer-cli');
     const player = (n: string) => n.startsWith('noctorium-cli-');
+    // Noctorium Stats brings a second .apk that is not an installer, so the player's needs telling apart.
+    const stats = (n: string) => n.startsWith('noctorium-stats-');
     return {
       version: (body.tag_name ?? '').replace(/^v/, ''),
       installers: {
@@ -182,7 +192,7 @@ export async function latestRelease(): Promise<Release | null> {
       direct: {
         windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
         windowsMsi: pick(assets, (n) => n.endsWith('.msi')),
-        android: pick(assets, (n) => !installer(n) && n.endsWith('.apk')),
+        android: pick(assets, (n) => !installer(n) && !stats(n) && n.endsWith('.apk')),
         debian: pick(assets, (n) => n.endsWith('.deb')),
         fedora: pick(assets, (n) => n.endsWith('.rpm')),
         arch: pick(assets, (n) => n.endsWith('.pkg.tar.zst')),
@@ -196,6 +206,13 @@ export async function latestRelease(): Promise<Release | null> {
         linux: pick(assets, (n) => player(n) && n.endsWith('linux-x64.tar.gz')),
         macArm: pick(assets, (n) => player(n) && n.endsWith('macos-arm64.tar.gz')),
         macIntel: pick(assets, (n) => player(n) && n.endsWith('macos-x64.tar.gz')),
+      },
+      stats: {
+        windows: pick(assets, (n) => stats(n) && n.endsWith('windows-x64.zip')),
+        linux: pick(assets, (n) => stats(n) && n.endsWith('linux-x64.tar.gz')),
+        macArm: pick(assets, (n) => stats(n) && n.endsWith('macos-arm64.zip')),
+        macIntel: pick(assets, (n) => stats(n) && n.endsWith('macos-x64.zip')),
+        android: pick(assets, (n) => stats(n) && n.endsWith('.apk')),
       },
     };
   } catch {
