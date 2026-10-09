@@ -85,6 +85,9 @@ export type ReleaseNote = {
 
 export const NOTES_PAGE = 'https://github.com/Noctorium/Noctorium-Installer/tree/main/notes';
 
+/** Noctorium's Telegram channel, where news of each release goes out. */
+export const TELEGRAM = 'https://t.me/noctoriumismusic';
+
 /**
  * The last few published releases' notes, newest first.
  *

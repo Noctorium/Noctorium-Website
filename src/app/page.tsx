@@ -20,10 +20,11 @@ import {
   MonitorSmartphone,
   Palette,
   Radio,
+  Send,
 } from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
 import { WhatsNew } from '@/components/whats-new';
-import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, type Release } from '@/lib/release';
+import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, TELEGRAM, type Release } from '@/lib/release';
 
 const GITHUB = 'https://github.com/Noctorium';
 
@@ -39,23 +40,32 @@ export default async function Home() {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-4 sm:px-6">
       <header className="flex items-center justify-between py-6">
-        <span className="flex items-center gap-2.5">
+        <span className="flex shrink-0 items-center gap-2.5">
           <Image src="/noctorium.png" alt="" width={28} height={28} className="rounded-md" priority />
           <span className="font-semibold tracking-tight">Noctorium</span>
         </span>
-        <nav className="flex items-center gap-5">
-          {/* Named even on a phone: a speech bubble alone does not say Discord. */}
+        <nav className="flex items-center gap-4 sm:gap-5">
+          {/* Named even on a phone: a speech bubble or a paper plane alone does not say which. On the narrowest,
+              the names stay and the pictures go. */}
           <a
             href={DISCORD}
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
           >
-            <MessagesSquare className="size-4" />
+            <MessagesSquare className="hidden size-4 min-[360px]:block" />
             <span>Discord</span>
           </a>
           <a
+            href={TELEGRAM}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+          >
+            <Send className="hidden size-4 min-[360px]:block" />
+            <span>Telegram</span>
+          </a>
+          {/* Left to the footer on the narrowest phones, where the three no longer fit beside the name. */}
+          <a
             href={GITHUB}
             aria-label="Source"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+            className="hidden items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground min-[360px]:inline-flex"
           >
             <Github className="size-4" />
             <span className="hidden sm:inline">Source</span>
@@ -196,6 +206,10 @@ export default async function Home() {
           Something not working, or an idea?{' '}
           <a href={DISCORD} className="text-accent underline decoration-dotted underline-offset-4 transition hover:text-foreground">
             Tell us on Discord
+          </a>
+          . News of each release goes out on{' '}
+          <a href={TELEGRAM} className="text-accent underline decoration-dotted underline-offset-4 transition hover:text-foreground">
+            Telegram
           </a>
           .
         </p>

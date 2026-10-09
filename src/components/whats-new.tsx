@@ -1,6 +1,6 @@
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { NoteBlocks, splitNotes } from '@/lib/notes';
-import { NOTES_PAGE, type ReleaseNote } from '@/lib/release';
+import { NOTES_PAGE, TELEGRAM, type ReleaseNote } from '@/lib/release';
 
 /**
  * What changed lately, straight from the release notes.
@@ -17,7 +17,13 @@ export function WhatsNew({ releases }: { releases: ReleaseNote[] }) {
   return (
     <section id="whats-new" className="scroll-mt-8 pb-16">
       <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">What&apos;s new</h2>
-      <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">From the release notes, as each version comes out.</p>
+      <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">
+        From the release notes, as each version comes out. To hear about the next one,{' '}
+        <a href={TELEGRAM} className="text-accent underline decoration-dotted underline-offset-4 hover:text-foreground">
+          follow Noctorium on Telegram
+        </a>
+        .
+      </p>
 
       <div className="mx-auto flex max-w-3xl flex-col gap-3">
         <article className="rounded-xl border border-primary/40 bg-card/60 p-6 backdrop-blur">
