@@ -8,6 +8,7 @@ import {
   Disc3,
   Globe,
   ListPlus,
+  MessagesSquare,
   SquareTerminal,
   Smartphone,
   Download,
@@ -26,6 +27,9 @@ import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, type Release } fr
 
 const GITHUB = 'https://github.com/Noctorium';
 
+/** Noctorium's Discord: where problems are reported and ideas suggested. */
+const DISCORD = 'https://discord.gg/TfePG6mzhM';
+
 /** The account service's own site, where the same statistics are read in a browser. */
 const STATS_SITE = 'https://noctorium-service.vercel.app';
 
@@ -39,13 +43,24 @@ export default async function Home() {
           <Image src="/noctorium.png" alt="" width={28} height={28} className="rounded-md" priority />
           <span className="font-semibold tracking-tight">Noctorium</span>
         </span>
-        <a
-          href={GITHUB}
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-        >
-          <Github className="size-4" />
-          <span className="hidden sm:inline">Source</span>
-        </a>
+        <nav className="flex items-center gap-5">
+          {/* Named even on a phone: a speech bubble alone does not say Discord. */}
+          <a
+            href={DISCORD}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+          >
+            <MessagesSquare className="size-4" />
+            <span>Discord</span>
+          </a>
+          <a
+            href={GITHUB}
+            aria-label="Source"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+          >
+            <Github className="size-4" />
+            <span className="hidden sm:inline">Source</span>
+          </a>
+        </nav>
       </header>
 
       <section className="flex flex-col items-center pb-16 pt-10 text-center sm:pt-20">
@@ -176,6 +191,13 @@ export default async function Home() {
         <p>
           Noctorium plays from YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music using your own accounts.
           It is not affiliated with any of them.
+        </p>
+        <p>
+          Something not working, or an idea?{' '}
+          <a href={DISCORD} className="text-accent underline decoration-dotted underline-offset-4 transition hover:text-foreground">
+            Tell us on Discord
+          </a>
+          .
         </p>
         <a href={GITHUB} className="transition hover:text-foreground">
           github.com/Noctorium
