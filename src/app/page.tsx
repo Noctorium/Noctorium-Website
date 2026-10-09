@@ -138,12 +138,12 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Nineteen themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, liquid glass, eleven seek bars, ten player bars and eleven layouts for now playing — a turntable, Cover flow, the title as a poster — with playback speed on a button of its own, an equaliser, and keys of your own in the terminal."
+          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, liquid glass, eleven seek bars, ten player bars and eleven layouts for now playing — a turntable, Cover flow, the title as a poster — with playback speed on a button of its own, an equaliser, and keys of your own in the terminal."
         />
         <Feature
           icon={<AppWindow className="size-5" />}
           title="Windows 98 and XP, for real"
-          body="Pick 98 and Noctorium becomes that desktop: grey bevelled buttons, navy title bars, scroll bars with arrows, and Now playing in windows on the teal desktop. Pick XP for Luna's blue, its task pane and the green start button. Both with a taskbar and a clock you can put away — on the computer, the phone, in a terminal and in the browser."
+          body="Pick 98 and Noctorium becomes that desktop: grey bevelled buttons, navy title bars, scroll bars with arrows, and Now playing in windows on the teal desktop. Pick Noctorium 98 for the same 98 at night: violet title bars, black lists and a night sky behind the windows. Pick XP for Luna's blue, its task pane and the green start button. Each with a taskbar and a clock you can put away — on the computer, the phone, in a terminal and in the browser."
         />
         <Feature
           icon={<BatteryCharging className="size-5" />}
