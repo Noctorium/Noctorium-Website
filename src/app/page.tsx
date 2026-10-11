@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import {
   Activity,
+  Volume2,
   AppWindow,
   AudioLines,
   BatteryCharging,
@@ -8,12 +9,14 @@ import {
   Disc3,
   Globe,
   ListPlus,
+  Table2,
   MessagesSquare,
   SquareTerminal,
   Smartphone,
   Download,
   Github,
   Heart,
+  Keyboard,
   Library,
   Lock,
   MicVocal,
@@ -163,7 +166,7 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, liquid glass, eleven seek bars, ten player bars and eleven layouts for now playing — a turntable, Cover flow, the title as a poster — with playback speed on a button of its own, an equaliser, and keys of your own in the terminal."
+          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, six icon sets, liquid glass, twelve seek bars, eleven player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
         />
         <Feature
           icon={<AppWindow className="size-5" />}
@@ -179,6 +182,21 @@ export default async function Home() {
           icon={<Download className="size-5" />}
           title="Offline, when you want it"
           body="Keep a song or a whole playlist to play without a connection. On the desktop they are saved as MP3s with their covers; on the phone, only over Wi-Fi if you like."
+        />
+        <Feature
+          icon={<Table2 className="size-5" />}
+          title="A player of the old school"
+          body="Pick the Toolbar and the Playlist layout: play, pause and stop in a row of flat buttons, the cover docked beside the queue as a table with the columns you choose, a visualiser drawn from the sound itself, and a status bar with the stream's format."
+        />
+        <Feature
+          icon={<Keyboard className="size-5" />}
+          title="Ctrl+F, and keys of your own"
+          body="On the desktop, a quick search over everything: type !ytm, !sc, !sp, !bc or !vk to search one service. Every shortcut can be changed, and global ones work from any program, Noctorium in the tray."
+        />
+        <Feature
+          icon={<Volume2 className="size-5" />}
+          title="Louder, up to 1000%"
+          body="A volume booster behind the boost button, ten times as loud at the top, with a limiter so a quiet song gets loud rather than broken. The volume button shows the boost while it is on."
         />
         <Feature
           icon={<Activity className="size-5" />}
