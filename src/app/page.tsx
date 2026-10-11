@@ -151,7 +151,7 @@ export default async function Home() {
         <Feature
           icon={<ListPlus className="size-5" />}
           title="Up next, from the same service"
-          body="When the queue runs out, it carries on from the last song's own service: YouTube Music's radio, SoundCloud's related tracks, more from a Bandcamp artist, VK's suggestions, Spotify's own autoplay. See them coming, keep or drop any, switch autoplay on or off from the queue itself, and find the queue where you left it next time."
+          body="When the queue runs out, it carries on from the last song's own service: YouTube Music's radio, SoundCloud's related tracks, more from a Bandcamp artist, VK's suggestions, Spotify's own autoplay. See them coming, keep or drop any, switch autoplay on or off from the queue itself, and find the queue where you left it next time. A song picked on Home or from a search starts autoplay from it, and one button clears the queue down to the song playing."
         />
         <Feature
           icon={<MicVocal className="size-5" />}
@@ -206,7 +206,7 @@ export default async function Home() {
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
-          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second."
+          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second — then drive it from where you are: the song, a seek bar, play, skip and volume. Bring it back and the whole queue comes with it."
         />
         <Feature
           icon={<Github className="size-5" />}
