@@ -196,7 +196,7 @@ export default async function Home() {
         <Feature
           icon={<Volume2 className="size-5" />}
           title="Louder, up to 1000%"
-          body="A volume booster behind the boost button that makes every song clearly louder at each step: quiet recordings close to ten times, music already mastered loud well past where it was. Your volume's room goes first, then a look-ahead limiter and a gentle clipper, so it gets loud rather than broken. The volume button shows the boost while it is on."
+          body="A volume booster behind the boost button that makes every song clearly louder at each step: quiet recordings close to ten times, music already mastered loud well past where it was. Your volume's room goes first, then a look-ahead limiter and a gentle clipper, so it gets loud rather than broken. Turned up, down or off, it changes the song already playing, straight away. The volume button shows the boost while it is on."
         />
         <Feature
           icon={<Activity className="size-5" />}
