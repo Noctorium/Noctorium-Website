@@ -206,7 +206,7 @@ export default async function Home() {
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
-          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. With Connect, move the music from one to the other and it carries on from the same second — then drive it from where you are: the song, a seek bar, play, skip and volume. Bring it back and the whole queue comes with it."
+          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. Connect has a tab of its own: every device on your network and what it is playing, and Play here or Play on any of them, at the same second with the whole queue. While the music plays elsewhere, your own player is its remote."
         />
         <Feature
           icon={<Github className="size-5" />}
