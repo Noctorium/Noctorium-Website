@@ -131,7 +131,7 @@ export default async function Home() {
         <Feature
           icon={<Heart className="size-5" />}
           title="Your real accounts"
-          body="Liking a song likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK, and the playlists you make, rename, reorder or make public or private — unlisted too, on YouTube Music — live on the service. Open it tomorrow on any other device and it is all there, because it was never only here."
+          body="Liking a song likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK, and the playlists you make, rename, reorder or make public or private — unlisted too, on YouTube Music — live on the service, changed from the computer or the phone alike. Open it tomorrow on any other device and it is all there, because it was never only here."
         />
         <Feature
           icon={<AudioLines className="size-5" />}
