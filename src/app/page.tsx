@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import {
-  Activity,
+  History,
   Volume2,
   AppWindow,
   AudioLines,
@@ -131,7 +131,7 @@ export default async function Home() {
         <Feature
           icon={<Heart className="size-5" />}
           title="Your real accounts"
-          body="Liking a song likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK, and the playlists you make, rename, reorder or make private live on the service. Open it tomorrow on any other device and it is all there, because it was never only here."
+          body="Liking a song likes it on YouTube Music, SoundCloud or Spotify, or adds it to My music on VK, and the playlists you make, rename, reorder or make public or private — unlisted too, on YouTube Music — live on the service. Open it tomorrow on any other device and it is all there, because it was never only here."
         />
         <Feature
           icon={<AudioLines className="size-5" />}
@@ -166,7 +166,7 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, six icon sets, liquid glass, twelve seek bars, eleven player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
+          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, six icon sets, each service's own logo on its badges or its letters if you prefer, liquid glass, twelve seek bars, eleven player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
         />
         <Feature
           icon={<AppWindow className="size-5" />}
@@ -199,9 +199,9 @@ export default async function Home() {
           body="A volume booster behind the boost button that makes every song clearly louder at each step: quiet recordings close to ten times, music already mastered loud well past where it was. Your volume's room goes first, then a look-ahead limiter and a gentle clipper, so it gets loud rather than broken. Turned up, down or off, it changes the song already playing, straight away. The volume button shows the boost while it is on."
         />
         <Feature
-          icon={<Activity className="size-5" />}
-          title="Scrobbling and Discord"
-          body="Every listen goes to Last.fm and ListenBrainz, and the desktop shows what you are playing on Discord."
+          icon={<History className="size-5" />}
+          title="A history that stays home"
+          body="Every song you listen to, newest first and by day, on your profile on the computer and the phone, to play again or clear. It is kept on the device it was played on and sent nowhere, not even to your Noctorium account. Scrobble to Last.fm and ListenBrainz if you like, and the desktop shows what you are playing on Discord."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
