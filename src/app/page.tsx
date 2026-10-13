@@ -166,7 +166,7 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, six icon sets, each service's own logo on its badges or its letters if you prefer, liquid glass, twelve seek bars, eleven player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
+          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, six icon sets, each service's own logo on its badges or its letters if you prefer, liquid glass, twelve seek bars, twelve player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
         />
         <Feature
           icon={<AppWindow className="size-5" />}
@@ -186,7 +186,7 @@ export default async function Home() {
         <Feature
           icon={<Table2 className="size-5" />}
           title="A player of the old school"
-          body="Pick the Toolbar and the Playlist layout: play, pause and stop in a row of flat buttons, the cover docked beside the queue as a table with the columns you choose, a visualiser drawn from the sound itself, and a status bar with the stream's format."
+          body="Pick the Toolbar and the Playlist layout: play, pause and stop in a row of flat buttons, the cover docked beside the queue as a table with the columns you choose, a visualiser drawn from the sound itself, and a status bar with the stream's format. Or Toolbar 2: play and pause as one, and like, lyrics, the queue, the sleep timer, Connect and the speed in the row too — on the computer, the phone, in a terminal and in the browser."
         />
         <Feature
           icon={<Keyboard className="size-5" />}
