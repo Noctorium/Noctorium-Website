@@ -186,7 +186,7 @@ export default async function Home() {
         <Feature
           icon={<Table2 className="size-5" />}
           title="A player of the old school"
-          body="Pick the Toolbar and the Playlist layout: play, pause and stop in a row of flat buttons, the cover docked beside the queue as a table with the columns you choose, a visualiser drawn from the sound itself, and a status bar with the stream's format. Or Toolbar 2: play and pause as one, and like, lyrics, the queue, the sleep timer, Connect and the speed in the row too — on the computer, the phone, in a terminal and in the browser."
+          body="Pick the Toolbar and the Playlist layout: play, pause and stop in a row of flat buttons, the cover docked beside the queue as a table with the columns you choose and the lyrics a tab away, a visualiser drawn from the sound itself, and a status bar with the stream's format. Or Toolbar 2: play and pause as one, and like, lyrics, the queue, the sleep timer, Connect and the speed in the row too — on the computer, the phone, in a terminal and in the browser."
         />
         <Feature
           icon={<Keyboard className="size-5" />}
@@ -206,7 +206,7 @@ export default async function Home() {
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
-          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. Connect has a tab of its own: every device on your network and what it is playing, and Play here or Play on any of them, at the same second with the whole queue. While the music plays elsewhere, your own player is its remote."
+          body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. Connect has a tab of its own: every device on your network and what it is playing, and Play here or Play on any of them, at the same second with the whole queue. While the music plays elsewhere, your own player is its remote. A switch at the top of the tab turns Connect off, and then the device neither looks for your others nor can be seen."
         />
         <Feature
           icon={<Github className="size-5" />}
