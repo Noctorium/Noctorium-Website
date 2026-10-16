@@ -17,12 +17,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Noctorium — one player for all your music',
   description:
-    'A music player for YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music together. Your own accounts, ' +
+    'A music player for YouTube Music, SoundCloud, Bandcamp, Spotify, VK Music, Apple Music, Deezer and Tidal ' +
+    'together. Your own accounts, ' +
     'your own likes and playlists, on Windows, macOS, Linux and Android, in a terminal, or right in your browser.',
   icons: { icon: '/favicon.ico' },
   openGraph: {
     title: 'Noctorium',
-    description: 'One player for YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music.',
+    description: 'One player for YouTube Music, SoundCloud, Bandcamp, Spotify, VK Music, Apple Music, Deezer and Tidal.',
     images: ['/noctorium.png'],
     type: 'website',
   },

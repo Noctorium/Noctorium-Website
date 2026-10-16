@@ -19,11 +19,13 @@ import {
   Keyboard,
   Library,
   Lock,
+  Music4,
   MicVocal,
   MonitorSmartphone,
   Palette,
   Radio,
   Send,
+  TriangleAlert,
 } from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
 import { WhatsNew } from '@/components/whats-new';
@@ -106,9 +108,9 @@ export default async function Home() {
           className="mt-5 max-w-xl animate-rise text-pretty text-lg text-muted-foreground"
           style={{ animationDelay: '120ms' }}
         >
-          YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music, in one library, on your desktop, your phone,
-          in a terminal or right in your browser. Your own accounts — your likes and playlists are written to them,
-          not kept in a copy here.
+          YouTube Music, SoundCloud, Bandcamp, Spotify, VK Music, Apple Music, Deezer and Tidal, in one library, on
+          your desktop, your phone, in a terminal or right in your browser. Your own accounts — your likes and
+          playlists are written to them, not kept in a copy here.
         </p>
 
         <div className="mt-11 w-full animate-rise" style={{ animationDelay: '180ms' }}>
@@ -149,6 +151,16 @@ export default async function Home() {
           body="Sign in on VK's own page: My music, your playlists, search and VK's suggestions. VK offers its music to no other app, so this uses your session the way its web player does — its terms do not allow that, and many songs do not play outside Russia."
         />
         <Feature
+          icon={<Music4 className="size-5" />}
+          title="Apple Music, Deezer and Tidal"
+          body="Search them, open their albums, artists and playlists, paste their links, and see your library from them. Deezer needs only your public profile, Apple Music signs in on Apple's own page, and Tidal on Tidal's, with a free developer app of your own that Settings walks you through. None lets another app play its music, so each song is played as the same recording on YouTube Music."
+        />
+        <Feature
+          icon={<TriangleAlert className="size-5" />}
+          title="Beta, and it says so"
+          body="Every service but YouTube Music, YouTube and SoundCloud is in beta, and its settings say so above the sign-in: it may not work as it should, and there is a small chance it gets your account blocked. Use those at your own risk."
+        />
+        <Feature
           icon={<ListPlus className="size-5" />}
           title="Up next, from the same service"
           body="When the queue runs out, it carries on from the last song's own service: YouTube Music's radio, SoundCloud's related tracks, more from a Bandcamp artist, VK's suggestions, Spotify's own autoplay. See them coming, keep or drop any, switch autoplay on or off from the queue itself, and find the queue where you left it next time. A song picked on Home or from a search starts autoplay from it, and one button clears the queue down to the song playing."
@@ -161,7 +173,7 @@ export default async function Home() {
         <Feature
           icon={<Lock className="size-5" />}
           title="Signing in, on their page"
-          body="Your password goes to the service's own page — Google's, SoundCloud's, Spotify's or VK's — never to a form of ours. Only the session is kept, on your device. Or sign the desktop in by scanning a code with your phone."
+          body="Your password goes to the service's own page — Google's, SoundCloud's, Spotify's, VK's, Apple's or Tidal's — never to a form of ours. Only the session is kept, on your device. Or sign the desktop in by scanning a code with your phone."
         />
         <Feature
           icon={<Palette className="size-5" />}
@@ -191,7 +203,7 @@ export default async function Home() {
         <Feature
           icon={<Keyboard className="size-5" />}
           title="Ctrl+F, and keys of your own"
-          body="On the desktop, a quick search over everything: type !ytm, !sc, !sp, !bc or !vk to search one service. Every shortcut can be changed, and global ones work from any program, Noctorium in the tray."
+          body="On the desktop, a quick search over everything: type !ytm, !sc, !sp, !bc, !vk, !am, !dz or !td to search one service. Every shortcut can be changed, and global ones work from any program, Noctorium in the tray."
         />
         <Feature
           icon={<Volume2 className="size-5" />}
@@ -201,7 +213,7 @@ export default async function Home() {
         <Feature
           icon={<History className="size-5" />}
           title="A history that stays home"
-          body="Every song you listen to, newest first and by day, on your profile on the computer and the phone, to play again or clear. It is kept on the device it was played on and sent nowhere, not even to your Noctorium account. Scrobble to Last.fm and ListenBrainz if you like, and the desktop shows what you are playing on Discord."
+          body="Every song you listen to, newest first and by day, on your profile on the computer and the phone, to play again or clear. It is kept on the device it was played on and sent nowhere, not even to your Noctorium account. Scrobble to Last.fm, Libre.fm and ListenBrainz if you like, with the sign-in link there to copy into any browser, and the desktop shows what you are playing on Discord."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
@@ -217,7 +229,8 @@ export default async function Home() {
 
       <footer className="mt-auto flex flex-col items-center gap-2 border-t border-border/60 py-8 text-sm text-muted-foreground">
         <p>
-          Noctorium plays from YouTube Music, SoundCloud, Bandcamp, Spotify and VK Music using your own accounts.
+          Noctorium plays from YouTube Music, SoundCloud, Bandcamp, Spotify, VK Music, Apple Music, Deezer and Tidal
+          using your own accounts.
           It is not affiliated with any of them.
         </p>
         <p>
