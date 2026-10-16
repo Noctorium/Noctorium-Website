@@ -7,6 +7,7 @@ import {
   BatteryCharging,
   ChartColumn,
   Disc3,
+  FileUp,
   Globe,
   ListPlus,
   Table2,
@@ -137,8 +138,13 @@ export default async function Home() {
         />
         <Feature
           icon={<AudioLines className="size-5" />}
-          title="Spotify, two ways"
-          body="Any account: your playlists and liked songs, Spotify in search, and hearts that save to Liked Songs, each song played from YouTube Music. With Premium, Spotify songs play in your own Spotify app instead — on this computer, your phone or a speaker — while Noctorium follows along."
+          title="Spotify, signed in"
+          body="Signed in: your playlists and liked songs, Spotify in search, and hearts that save to Liked Songs, each song played from YouTube Music. With Premium, Spotify songs play in your own Spotify app instead — on this computer, your phone or a speaker — while Noctorium follows along."
+        />
+        <Feature
+          icon={<FileUp className="size-5" />}
+          title="Spotify playlists, no sign-in needed"
+          body="Spotify answers the sign-in only while the owner of Noctorium's Spotify app has Premium, so there are two ways in without one. Follow a public playlist by its link and it stays in step with Spotify — only its first 100 songs, as that is all Spotify's public page shows. Or import Spotify's own data download: every playlist you made and your Liked Songs, as playlists of your own."
         />
         <Feature
           icon={<Disc3 className="size-5" />}
