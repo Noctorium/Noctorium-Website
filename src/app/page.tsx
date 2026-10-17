@@ -11,6 +11,7 @@ import {
   Globe,
   ListPlus,
   Table2,
+  Tv,
   MessagesSquare,
   SquareTerminal,
   Smartphone,
@@ -184,7 +185,12 @@ export default async function Home() {
         <Feature
           icon={<Palette className="size-5" />}
           title="Make it yours"
-          body="Twenty themes, from Catppuccin and Nord to pure black crimson for OLED screens. Accent colours, six icon sets, each service's own logo on its badges or its letters if you prefer, liquid glass, twelve seek bars, twelve player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
+          body="Twenty-four themes, from Catppuccin and Nord to pure black crimson for OLED screens, and four Glow themes: near-black pages under a soft light, Afterglow's in the colour of the cover playing. Accent colours, six icon sets, each service's own logo on its badges or its letters if you prefer, liquid glass, twelve seek bars, twelve player bars and twelve layouts for now playing — a turntable, Cover flow, the title as a poster, a playlist table with a visualiser — with playback speed on a button of its own, a volume booster to 1000%, an equaliser, and Settings you can search."
+        />
+        <Feature
+          icon={<Tv className="size-5" />}
+          title="Stream widgets"
+          body="On the desktop, show what is playing over your stream in OBS or Streamlabs: switch them on, copy a look's address into a Browser source, and the song, its cover and how far in it is appear on stream. Seven looks — Glass, Minimal, a turning Vinyl, Neon, a Ticker, a tall Afterglow card and a Windows 98 window — several at once if you like. Off until you switch them on."
         />
         <Feature
           icon={<AppWindow className="size-5" />}
