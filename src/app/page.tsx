@@ -200,7 +200,7 @@ export default async function Home() {
         <Feature
           icon={<BatteryCharging className="size-5" />}
           title="Keeps playing"
-          body="Close the window and the music carries on from the tray, or have Noctorium start with Windows. On the phone it plays on with the screen locked, even on phones that like to close apps, and a song that will not start after the phone has slept starts itself again where it was. Turn on Keep Noctorium alive and it stays running in the background, and comes back by itself when the phone stops it anyway, carrying on with the song where it was."
+          body="Close the window and the music carries on from the tray, or have Noctorium start with Windows. On the phone it plays on with the screen locked, even on phones that like to close apps, and a song that will not start after the phone has slept starts itself again where it was. Turn on Keep Noctorium alive and it stays running in the background, and comes back by itself when the phone stops it anyway, carrying on with the song where it was. If the phone restricts it in the background, so that switching apps would stop the music, Noctorium says so and takes you to the switch."
         />
         <Feature
           icon={<Download className="size-5" />}
