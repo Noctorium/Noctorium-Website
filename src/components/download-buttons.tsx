@@ -78,7 +78,7 @@ export function DownloadButtons({ release }: { release: Release | null }) {
 
       <div id="install" className="mx-auto mt-7 flex max-w-xl scroll-mt-8 flex-col gap-2">
         <p className="text-center text-sm text-muted-foreground">
-          Or from a terminal. It asks which of Noctorium, the Noctorium CLI and Noctorium Stats you want,
+          Or from a terminal. It asks which of Noctorium, the Noctorium CLI, Noctorium Stats, Noctorium Rust and Noctorium Song Find you want,
           downloads them at once, and checks them against the published checksums.
         </p>
         <CopyCommand label="Windows" command="irm https://noctorium.vercel.app/install | iex" />

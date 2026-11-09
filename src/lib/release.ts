@@ -69,6 +69,15 @@ export type Release = {
     macIntel?: Download;
     android?: Download;
   };
+  /** Noctorium Song Find: which song is playing, from the microphone or the device's own sound. Missing
+   * before 0.27.0. */
+  songFind: {
+    windows?: Download;
+    linux?: Download;
+    macArm?: Download;
+    macIntel?: Download;
+    android?: Download;
+  };
 };
 
 type Asset = { name: string; browser_download_url: string; size: number };
@@ -181,6 +190,8 @@ export async function latestRelease(): Promise<Release | null> {
     const player = (n: string) => n.startsWith('noctorium-cli-');
     // Noctorium Stats brings a second .apk that is not an installer, so the player's needs telling apart.
     const stats = (n: string) => n.startsWith('noctorium-stats-');
+    // And Noctorium Song Find a third.
+    const songFind = (n: string) => n.startsWith('noctorium-song-find-');
     return {
       version: (body.tag_name ?? '').replace(/^v/, ''),
       installers: {
@@ -195,7 +206,7 @@ export async function latestRelease(): Promise<Release | null> {
       direct: {
         windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
         windowsMsi: pick(assets, (n) => n.endsWith('.msi')),
-        android: pick(assets, (n) => !installer(n) && !stats(n) && n.endsWith('.apk')),
+        android: pick(assets, (n) => !installer(n) && !stats(n) && !songFind(n) && n.endsWith('.apk')),
         debian: pick(assets, (n) => n.endsWith('.deb')),
         fedora: pick(assets, (n) => n.endsWith('.rpm')),
         arch: pick(assets, (n) => n.endsWith('.pkg.tar.zst')),
@@ -216,6 +227,13 @@ export async function latestRelease(): Promise<Release | null> {
         macArm: pick(assets, (n) => stats(n) && n.endsWith('macos-arm64.zip')),
         macIntel: pick(assets, (n) => stats(n) && n.endsWith('macos-x64.zip')),
         android: pick(assets, (n) => stats(n) && n.endsWith('.apk')),
+      },
+      songFind: {
+        windows: pick(assets, (n) => songFind(n) && n.endsWith('windows-x64.zip')),
+        linux: pick(assets, (n) => songFind(n) && n.endsWith('linux-x64.tar.gz')),
+        macArm: pick(assets, (n) => songFind(n) && n.endsWith('macos-arm64.zip')),
+        macIntel: pick(assets, (n) => songFind(n) && n.endsWith('macos-x64.zip')),
+        android: pick(assets, (n) => songFind(n) && n.endsWith('.apk')),
       },
     };
   } catch {

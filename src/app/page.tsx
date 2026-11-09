@@ -124,6 +124,10 @@ export default async function Home() {
 
       <Stats release={release} />
 
+      <SongFind release={release} />
+
+      <Obtainium />
+
       <WhatsNew releases={notes} />
 
       <section className="grid gap-4 pb-16 sm:grid-cols-2 lg:grid-cols-3">
@@ -275,7 +279,7 @@ function Platforms({ release }: { release: Release | null }) {
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Platform icon={<AppWindow className="size-5" />} title="Desktop" body="Windows, macOS and Linux, in a window of its own, in the tray or the menu bar when you close it." />
-        <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android, with the lock screen, the notification, OnePlus's Live Alerts bubble and playing on with the screen off." />
+        <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android, with the lock screen, the notification, OnePlus's Live Alerts bubble and playing on with the screen off. Updates itself, or through Obtainium." />
         <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse. It keeps itself up to date. Pick it in the installer or the one line above.">
           <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
@@ -349,6 +353,129 @@ function Stats({ release }: { release: Release | null }) {
               </span>
             )}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Noctorium Song Find, which says which song is playing. Listed by file once a release has them, as Stats is.
+ */
+function SongFind({ release }: { release: Release | null }) {
+  const files = release?.songFind ?? {};
+  const all = [
+    ['Windows', files.windows],
+    ['macOS', files.macArm],
+    ['Intel Mac', files.macIntel],
+    ['Linux', files.linux],
+    ['Android', files.android],
+  ] as const;
+  const available = all.filter(([, file]) => file);
+  return (
+    <section className="pb-16">
+      <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
+        <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
+          <AudioLines className="size-5" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Which song is this?</h2>
+          <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
+            Noctorium Song Find listens and tells you — through the microphone, for a song playing in the room, or
+            straight from what your computer or phone is playing, with nothing held up to a speaker. It asks Shazam,
+            AudD, ACRCloud and, on the desktop, AcoustID, links the song on Spotify, YouTube Music, Apple Music,
+            Deezer and SoundCloud, and keeps a history of what it found on your device only. An app of its own for
+            Windows, macOS, Linux and Android, and it updates itself like the rest of Noctorium.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+            {available.length > 0 ? (
+              <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                <span>Noctorium Song Find for</span>
+                {available.map(([label, file]) => (
+                  <a
+                    key={label}
+                    className="underline decoration-dotted underline-offset-4 hover:text-foreground"
+                    href={file!.url}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </span>
+            ) : (
+              <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={RELEASES_PAGE}>
+                From the releases page, from 0.27.0
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** An Obtainium link that adds the app with its APK filter already set, through Obtainium's own redirect page. */
+function obtainiumLink(id: string, name: string, apkFilterRegEx: string): string {
+  const config = {
+    id,
+    url: 'https://github.com/Noctorium/Noctorium-Installer',
+    author: 'Noctorium',
+    name,
+    additionalSettings: JSON.stringify({ apkFilterRegEx }),
+  };
+  return `https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/${encodeURIComponent(JSON.stringify(config))}`;
+}
+
+/**
+ * Obtainium installs and updates Android apps from their releases. Every release carries all three APKs, so each
+ * app is the same source with its own filter.
+ */
+const OBTAINIUM_APPS = [
+  { name: 'Noctorium', id: 'app.noctorium', filter: '^Noctorium-[0-9].*[.]apk$' },
+  { name: 'Noctorium Stats', id: 'app.noctorium.stats', filter: '^Noctorium-Stats-[0-9].*[.]apk$' },
+  { name: 'Noctorium Song Find', id: 'app.noctorium.songfind', filter: '^Noctorium-Song-Find-[0-9].*[.]apk$' },
+] as const;
+
+function Obtainium() {
+  return (
+    <section id="obtainium" className="pb-16">
+      <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
+        <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
+          <Smartphone className="size-5" />
+        </div>
+        <div className="min-w-0">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">On Android, with Obtainium</h2>
+          <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
+            Noctorium supports{' '}
+            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href="https://github.com/ImranR98/Obtainium">
+              Obtainium
+            </a>
+            , which installs Android apps straight from their releases and keeps them up to date. Tap a button on a
+            phone with Obtainium installed and it opens with the app already set up.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-4">
+            {OBTAINIUM_APPS.map((app) => (
+              <a
+                key={app.id}
+                href={obtainiumLink(app.id, app.name, app.filter)}
+                className="flex flex-col items-start gap-2 rounded-lg border border-border/70 p-3 transition hover:border-primary/40"
+              >
+                <span className="text-sm font-semibold text-foreground">{app.name}</span>
+                <Image src="/badge_obtainium.png" alt={`Get ${app.name} on Obtainium`} width={124} height={48} />
+              </a>
+            ))}
+          </div>
+          <p className="mt-5 max-w-2xl text-pretty text-sm leading-relaxed">
+            Or add it by hand: <strong className="text-foreground">Add app</strong>, the source{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">https://github.com/Noctorium/Noctorium-Installer</code>,
+            and under <em>Filter APKs by regular expression</em>{' '}
+            {OBTAINIUM_APPS.map((app, i) => (
+              <span key={app.id}>
+                <code className="rounded bg-muted px-1 py-0.5 text-xs">{app.filter}</code> for {app.name}
+                {i < OBTAINIUM_APPS.length - 1 ? (i === OBTAINIUM_APPS.length - 2 ? ' or ' : ', ') : '.'}
+              </span>
+            ))}{' '}
+            Every release carries all three APKs, signed with Noctorium&apos;s key, and the filter picks the right one.
+          </p>
         </div>
       </div>
     </section>
