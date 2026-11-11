@@ -10,6 +10,7 @@ import {
   FileUp,
   Globe,
   ListPlus,
+  RadioTower,
   Table2,
   Tv,
   MessagesSquare,
@@ -165,6 +166,11 @@ export default async function Home() {
           icon={<Music4 className="size-5" />}
           title="Apple Music, Deezer and Tidal"
           body="Search them, open their albums, artists and playlists, paste their links, and see your library from them. Deezer needs only your public profile, Apple Music signs in on Apple's own page, and Tidal on Tidal's, with a free developer app of your own that Settings walks you through. None lets another app play its music, so each song is played as the same recording on YouTube Music."
+        />
+        <Feature
+          icon={<RadioTower className="size-5" />}
+          title="Radio from every country"
+          body="Switch the search from Music to Radio and tune in to tens of thousands of live stations from more than two hundred countries, from the open Radio Browser list: the most listened-to wherever you pick, or a station, a city or a kind of music by name. In the quick search bar, Ctrl+F again switches between the two."
         />
         <Feature
           icon={<TriangleAlert className="size-5" />}
