@@ -9,6 +9,7 @@ import {
   Disc3,
   FileUp,
   Globe,
+  Joystick,
   ListPlus,
   RadioTower,
   Table2,
@@ -171,6 +172,11 @@ export default async function Home() {
           icon={<RadioTower className="size-5" />}
           title="Radio from every country"
           body="Switch the search from Music to Radio and tune in to tens of thousands of live stations from more than two hundred countries, from the open Radio Browser list: the most listened-to wherever you pick, or a station, a city or a kind of music by name. In the quick search bar, Ctrl+F again switches between the two."
+        />
+        <Feature
+          icon={<Joystick className="size-5" />}
+          title="A remote control in your browser"
+          body="Switch on Settings › This device › Remote control on the desktop and open localhost:6932: play, pause, skip, seek, the volume, the queue, synced lyrics, search, playlists and the sleep timer, from any browser tab on the same computer. Every button is also an HTTP call for scripts and stream decks. It is off until you turn it on, and only this computer can reach it."
         />
         <Feature
           icon={<TriangleAlert className="size-5" />}
