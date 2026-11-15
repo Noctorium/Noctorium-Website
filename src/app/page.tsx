@@ -176,7 +176,7 @@ export default async function Home() {
         <Feature
           icon={<Joystick className="size-5" />}
           title="A remote control in your browser"
-          body="Switch on Settings › This device › Remote control on the desktop and open localhost:6932: play, pause, skip, seek, the volume, the queue, synced lyrics, search, playlists and the sleep timer, from any browser tab on the same computer. Every button is also an HTTP call for scripts and stream decks. It is off until you turn it on, and only this computer can reach it."
+          body="Switch on Settings › This device › Remote control on the desktop and open localhost:6932: play, pause, skip, seek, the volume, the queue, synced lyrics, search, playlists and the sleep timer, from any browser tab on the same computer. Every button is also an HTTP call for scripts and stream decks. Its ⚙ makes it your own: Noctorium's theme or the cover's colour, only the player, bigger lyrics, a name like “Living room”. It is off until you turn it on, and only this computer can reach it."
         />
         <Feature
           icon={<TriangleAlert className="size-5" />}
