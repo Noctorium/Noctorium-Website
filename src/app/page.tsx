@@ -5,6 +5,7 @@ import {
   AppWindow,
   AudioLines,
   BatteryCharging,
+  Car,
   ChartColumn,
   Disc3,
   FileUp,
@@ -123,6 +124,8 @@ export default async function Home() {
       </section>
 
       <Platforms release={release} />
+
+      <CarAndTv release={release} />
 
       <Stats release={release} />
 
@@ -291,7 +294,7 @@ function Platforms({ release }: { release: Release | null }) {
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Platform icon={<AppWindow className="size-5" />} title="Desktop" body="Windows, macOS and Linux, in a window of its own, in the tray or the menu bar when you close it." />
-        <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android, with the lock screen, the notification, OnePlus's Live Alerts bubble and playing on with the screen off. Updates itself, or through Obtainium." />
+        <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android — and Android Auto and Android TV — with the lock screen, the notification, OnePlus's Live Alerts bubble and playing on with the screen off. Updates itself, or through Obtainium." />
         <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse. It keeps itself up to date. Pick it in the installer or the one line above.">
           <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
@@ -308,6 +311,49 @@ function Platforms({ release }: { release: Release | null }) {
             With your own accounts: <code className="text-accent">noctorium web</code> serves it from your computer to every browser in the house.
           </p>
         </Platform>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Android Auto and Android TV: the phone's own APK, which is Noctorium in the car and on a TV as well, from
+ * Noctorium-Android-Auto and Noctorium-Android-TV built into Noctorium-Mobile.
+ */
+function CarAndTv({ release }: { release: Release | null }) {
+  const apk = release?.direct.android?.url ?? RELEASES_PAGE;
+  const noctorium = OBTAINIUM_APPS[0];
+  return (
+    <section id="car-and-tv" className="pb-16">
+      <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">In the car and on the TV</h2>
+      <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">
+        The Android app is Noctorium for Android Auto and Android TV too — one APK, the same library and queue.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Platform
+          icon={<Car className="size-5" />}
+          title="Android Auto"
+          body="Home, your library, the queue, radio, search and voice — “play Daft Punk on Noctorium” — on the car's screen, with every cover. The car and the phone are one player: pick a song in one and it shows in the other."
+        >
+          <p className="mt-3 text-xs text-muted-foreground">
+            Android Auto lists apps from outside Google Play once you turn on <em>Unknown sources</em>: in Android
+            Auto&apos;s settings tap the version ten times, then find it under developer settings.
+          </p>
+        </Platform>
+        <Platform
+          icon={<Tv className="size-5" />}
+          title="Android TV and Google TV"
+          body="Noctorium on the TV's home screen, with pages made for the remote: Now playing large, Home's rows, Search, your Library, the queue and radio. Sign in once from its Settings, or let a phone on the same network play on it through Connect."
+        />
+      </div>
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
+        <a className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110" href={apk}>
+          <Download className="size-4" />
+          Download the APK
+        </a>
+        <a href={obtainiumLink(noctorium.id, noctorium.name, noctorium.filter)} className="transition hover:brightness-110">
+          <Image src="/badge_obtainium.png" alt="Get Noctorium on Obtainium" width={124} height={48} />
+        </a>
       </div>
     </section>
   );
@@ -438,13 +484,14 @@ function obtainiumLink(id: string, name: string, apkFilterRegEx: string): string
 }
 
 /**
- * Obtainium installs and updates Android apps from their releases. Every release carries all three APKs, so each
+ * Obtainium installs and updates Android apps from their releases. Every release carries all four APKs, so each
  * app is the same source with its own filter.
  */
 const OBTAINIUM_APPS = [
   { name: 'Noctorium', id: 'app.noctorium', filter: '^Noctorium-[0-9].*[.]apk$' },
   { name: 'Noctorium Stats', id: 'app.noctorium.stats', filter: '^Noctorium-Stats-[0-9].*[.]apk$' },
   { name: 'Noctorium Song Find', id: 'app.noctorium.songfind', filter: '^Noctorium-Song-Find-[0-9].*[.]apk$' },
+  { name: 'Noctorium Installer', id: 'app.noctorium.installer', filter: '^Noctorium-Installer-android[.]apk$' },
 ] as const;
 
 function Obtainium() {
@@ -462,7 +509,8 @@ function Obtainium() {
               Obtainium
             </a>
             , which installs Android apps straight from their releases and keeps them up to date. Tap a button on a
-            phone with Obtainium installed and it opens with the app already set up.
+            phone or TV with Obtainium installed and it opens with the app already set up. Noctorium is the same app
+            for the phone, Android Auto and Android TV.
           </p>
           <div className="mt-5 flex flex-wrap gap-4">
             {OBTAINIUM_APPS.map((app) => (
@@ -486,7 +534,7 @@ function Obtainium() {
                 {i < OBTAINIUM_APPS.length - 1 ? (i === OBTAINIUM_APPS.length - 2 ? ' or ' : ', ') : '.'}
               </span>
             ))}{' '}
-            Every release carries all three APKs, signed with Noctorium&apos;s key, and the filter picks the right one.
+            Every release carries all four APKs, signed with Noctorium&apos;s key, and the filter picks the right one.
           </p>
         </div>
       </div>
