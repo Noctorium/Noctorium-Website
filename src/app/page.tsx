@@ -31,6 +31,9 @@ import {
   Radio,
   Send,
   TriangleAlert,
+  Search,
+  UserRound,
+  WandSparkles,
 } from 'lucide-react';
 import { DownloadButtons } from '@/components/download-buttons';
 import { WhatsNew } from '@/components/whats-new';
@@ -140,6 +143,21 @@ export default async function Home() {
           icon={<Radio className="size-5" />}
           title="Every library, side by side"
           body="Search once and see results from every service you use. Your playlists and liked songs from each sit in the same library, and a queue can hold songs from any of them."
+        />
+        <Feature
+          icon={<UserRound className="size-5" />}
+          title="Artists, albums and playlists"
+          body="An artist's page is a whole page: a banner, their popular songs, then albums, singles, videos, playlists and artists like them, from YouTube Music and SoundCloud. Search for playlists too, beside Music, Radio and Artists. In the library, your liked songs come first, in a card of their own."
+        />
+        <Feature
+          icon={<Search className="size-5" />}
+          title="Pull down to search"
+          body="On the phone, pull down at the top of Home and the search bar appears, as Ctrl+F does on the computer. Two menus beside it pick the service — every one at once, YouTube Music, SoundCloud and the rest — and what to look for: Music, Radio, Artists or Playlists."
+        />
+        <Feature
+          icon={<WandSparkles className="size-5" />}
+          title="Set up in a minute, or not at all"
+          body="The first time Noctorium opens, a few quick steps: a theme, where to search, autoplay, and your accounts. Skip it whenever you like and choose later in Settings. It shows once — not after an update, not after a restart, and never to anyone who used Noctorium before it. Home's layout has a place of its own in Settings, too."
         />
         <Feature
           icon={<Heart className="size-5" />}
@@ -442,7 +460,9 @@ function SongFind({ release }: { release: Release | null }) {
             Noctorium Song Find listens and tells you — through the microphone, for a song playing in the room, or
             straight from what your computer or phone is playing, with nothing held up to a speaker. It asks Shazam,
             AudD, ACRCloud and, on the desktop, AcoustID, links the song on Spotify, YouTube Music, Apple Music,
-            Deezer and SoundCloud, and keeps a history of what it found on your device only. An app of its own for
+            Deezer and SoundCloud, and keeps a history of what it found on your device only. On the phone, the
+            notifications follow along: a countdown while it listens, the seconds it has been looking, then found or
+            not found. An app of its own for
             Windows, macOS, Linux and Android, and it updates itself like the rest of Noctorium.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
