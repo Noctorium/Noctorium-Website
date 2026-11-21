@@ -18,7 +18,7 @@ export type Platform = {
   /** Two sentences at most: what this gets you, and anything to know first. */
   note: string;
   files: { label: string; file: Download }[];
-  /** Other apps for this system, shown as small links right under the button: the Noctorium CLI. */
+  /** Shown as small links right under the button: the Noctorium Installer CLI, the installer for a terminal. */
   also?: { label: string; file: Download }[];
 };
 
