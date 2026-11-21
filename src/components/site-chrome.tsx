@@ -54,9 +54,10 @@ export function SiteFooter() {
         Something not working, or an idea? <a href={DISCORD} className={link}>Tell us on Discord</a>. News of each
         release goes out on <a href={TELEGRAM} className={link}>Telegram</a>.
       </p>
-      <a href={GITHUB} className="transition hover:text-foreground">
-        github.com/Noctorium
-      </a>
+      <p className="flex gap-4">
+        <Link href="/supporters" className="transition hover:text-foreground">Supporters</Link>
+        <a href={GITHUB} className="transition hover:text-foreground">github.com/Noctorium</a>
+      </p>
     </footer>
   );
 }
