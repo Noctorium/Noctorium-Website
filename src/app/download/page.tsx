@@ -22,13 +22,15 @@ function platforms(r: Release | null): Platform[] {
       id: 'windows', label: 'Windows', action: 'Download for Windows',
       href: r?.installers.windows?.url ?? fallback, size: r?.installers.windows?.size,
       note: 'A small installer that fetches the current Noctorium, checks it against its published checksum and installs it — and the CLI, Stats, Rust or Song Find too, if you tick them. After that, Noctorium updates itself.',
-      files: present([['Noctorium setup .exe', r?.direct.windows], ['Noctorium .msi', r?.direct.windowsMsi], ['Installer for a terminal', r?.installers.windowsCli]]),
+      files: present([['Noctorium setup .exe', r?.direct.windows], ['Noctorium .msi', r?.direct.windowsMsi], ['Noctorium Installer CLI', r?.installers.windowsCli]]),
+      also: present([['Noctorium CLI', r?.cli.windows]]),
     },
     {
       id: 'macos', label: 'Mac', action: 'Download for Mac',
       href: r?.direct.macArm?.url ?? fallback, size: r?.direct.macArm?.size,
       note: 'For Apple silicon, every Mac since late 2020. Open the .dmg and drag Noctorium into Applications; it is not signed by Apple, so the first time choose Open Anyway in System Settings › Privacy & Security — or use the one line under Terminal, which skips that.',
-      files: present([['Intel Mac .dmg', r?.direct.macIntel], ['Installer for a terminal', r?.installers.macCli]]),
+      files: present([['Intel Mac .dmg', r?.direct.macIntel], ['Noctorium Installer CLI', r?.installers.macCli]]),
+      also: present([['Noctorium CLI, Apple silicon', r?.cli.macArm], ['Noctorium CLI, Intel', r?.cli.macIntel]]),
     },
     {
       id: 'linux', label: 'Linux', action: 'Download for Linux',
@@ -37,8 +39,9 @@ function platforms(r: Release | null): Platform[] {
       files: present([
         ['Debian, Ubuntu, Mint .deb', r?.direct.debian], ['Fedora, openSUSE .rpm', r?.direct.fedora], ['Arch .pkg.tar.zst', r?.direct.arch],
         ['AppImage', r?.direct.appImage], ['Flatpak', r?.direct.flatpak], ['Installer as an AppImage', r?.installers.linuxAppImage],
-        ['Installer for a terminal', r?.installers.linuxCli],
+        ['Noctorium Installer CLI', r?.installers.linuxCli],
       ]),
+      also: present([['Noctorium CLI', r?.cli.linux]]),
     },
     {
       id: 'android', label: 'Android', action: 'Download for Android',

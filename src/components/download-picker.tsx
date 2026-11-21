@@ -18,6 +18,8 @@ export type Platform = {
   /** Two sentences at most: what this gets you, and anything to know first. */
   note: string;
   files: { label: string; file: Download }[];
+  /** Other apps for this system, shown as small links right under the button: the Noctorium CLI. */
+  also?: { label: string; file: Download }[];
 };
 
 const ICONS: Record<PlatformId, React.ComponentType<{ className?: string }>> = {
@@ -62,6 +64,13 @@ export function DownloadPicker({ platforms, extras }: { platforms: Platform[]; e
     setDetected(mine);
     if (ids.includes(fromLink)) setSelected(fromLink);
     else if (mine) setSelected(mine);
+    // A link to another system on this same page (…/download#linux) changes only the hash.
+    const follow = () => {
+      const id = window.location.hash.slice(1) as PlatformId;
+      if (ids.includes(id)) setSelected(id);
+    };
+    window.addEventListener('hashchange', follow);
+    return () => window.removeEventListener('hashchange', follow);
   }, [platforms]);
 
   // On a phone the tabs scroll sideways: keep the chosen one in sight.
@@ -119,6 +128,17 @@ export function DownloadPicker({ platforms, extras }: { platforms: Platform[]; e
             {platform.size && <span className="text-sm font-normal opacity-75">{platform.size}</span>}
           </a>
           <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground">{platform.note}</p>
+          {platform.also && platform.also.length > 0 && (
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              {platform.also.map(({ label, file }) => (
+                <a key={label} href={file.url} className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/40 px-3.5 py-1.5 text-sm text-muted-foreground transition hover:border-primary/50 hover:text-foreground">
+                  <SquareTerminal className="size-4 text-accent" />
+                  {label}
+                  <span className="text-xs opacity-60">{file.size}</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         {extras[platform.id] && <div className="mt-6">{extras[platform.id]}</div>}
