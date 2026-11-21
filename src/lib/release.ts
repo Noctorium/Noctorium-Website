@@ -69,6 +69,17 @@ export type Release = {
     macIntel?: Download;
     android?: Download;
   };
+  /** Noctorium Rust: the same player as one native program. */
+  rust: {
+    windows?: Download;
+    linux?: Download;
+    macArm?: Download;
+    macIntel?: Download;
+  };
+  /** Noctorium Lite: a very small Android app. Missing before it was first released. */
+  lite?: Download;
+  /** Noctorium for iPhone and iPad, an unsigned .ipa to sideload. Missing before it was first released. */
+  ios?: Download;
   /** Noctorium Song Find: which song is playing, from the microphone or the device's own sound. Missing
    * before 0.27.0. */
   songFind: {
@@ -192,6 +203,8 @@ export async function latestRelease(): Promise<Release | null> {
     const stats = (n: string) => n.startsWith('noctorium-stats-');
     // And Noctorium Song Find a third.
     const songFind = (n: string) => n.startsWith('noctorium-song-find-');
+    const rust = (n: string) => n.startsWith('noctorium-rust-');
+    const lite = (n: string) => n.startsWith('noctorium-lite-');
     return {
       version: (body.tag_name ?? '').replace(/^v/, ''),
       installers: {
@@ -206,7 +219,7 @@ export async function latestRelease(): Promise<Release | null> {
       direct: {
         windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
         windowsMsi: pick(assets, (n) => n.endsWith('.msi')),
-        android: pick(assets, (n) => !installer(n) && !stats(n) && !songFind(n) && n.endsWith('.apk')),
+        android: pick(assets, (n) => !installer(n) && !stats(n) && !songFind(n) && !lite(n) && n.endsWith('.apk')),
         debian: pick(assets, (n) => n.endsWith('.deb')),
         fedora: pick(assets, (n) => n.endsWith('.rpm')),
         arch: pick(assets, (n) => n.endsWith('.pkg.tar.zst')),
@@ -228,6 +241,14 @@ export async function latestRelease(): Promise<Release | null> {
         macIntel: pick(assets, (n) => stats(n) && n.endsWith('macos-x64.zip')),
         android: pick(assets, (n) => stats(n) && n.endsWith('.apk')),
       },
+      rust: {
+        windows: pick(assets, (n) => rust(n) && n.endsWith('windows-x64.zip')),
+        linux: pick(assets, (n) => rust(n) && n.endsWith('linux-x64.tar.gz')),
+        macArm: pick(assets, (n) => rust(n) && n.endsWith('macos-arm64.zip')),
+        macIntel: pick(assets, (n) => rust(n) && n.endsWith('macos-x64.zip')),
+      },
+      lite: pick(assets, (n) => lite(n) && n.endsWith('.apk')),
+      ios: pick(assets, (n) => n.endsWith('.ipa')),
       songFind: {
         windows: pick(assets, (n) => songFind(n) && n.endsWith('windows-x64.zip')),
         linux: pick(assets, (n) => songFind(n) && n.endsWith('linux-x64.tar.gz')),

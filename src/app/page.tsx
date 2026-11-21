@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   History,
   Volume2,
@@ -34,15 +35,11 @@ import {
   Search,
   UserRound,
   WandSparkles,
+  ArrowRight,
 } from 'lucide-react';
-import { DownloadButtons } from '@/components/download-buttons';
+import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { WhatsNew } from '@/components/whats-new';
 import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, TELEGRAM, type Release } from '@/lib/release';
-
-const GITHUB = 'https://github.com/Noctorium';
-
-/** Noctorium's Discord: where problems are reported and ideas suggested. */
-const DISCORD = 'https://discord.gg/TfePG6mzhM';
 
 /** The account service's own site, where the same statistics are read in a browser. */
 const STATS_SITE = 'https://noctorium-service.vercel.app';
@@ -52,39 +49,7 @@ export default async function Home() {
 
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-4 sm:px-6">
-      <header className="flex items-center justify-between py-6">
-        <span className="flex shrink-0 items-center gap-2.5">
-          <Image src="/noctorium.png" alt="" width={28} height={28} className="rounded-md" priority />
-          <span className="font-semibold tracking-tight">Noctorium</span>
-        </span>
-        <nav className="flex items-center gap-4 sm:gap-5">
-          {/* Named even on a phone: a speech bubble or a paper plane alone does not say which. On the narrowest,
-              the names stay and the pictures go. */}
-          <a
-            href={DISCORD}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-          >
-            <MessagesSquare className="hidden size-4 min-[360px]:block" />
-            <span>Discord</span>
-          </a>
-          <a
-            href={TELEGRAM}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-          >
-            <Send className="hidden size-4 min-[360px]:block" />
-            <span>Telegram</span>
-          </a>
-          {/* Left to the footer on the narrowest phones, where the three no longer fit beside the name. */}
-          <a
-            href={GITHUB}
-            aria-label="Source"
-            className="hidden items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground min-[360px]:inline-flex"
-          >
-            <Github className="size-4" />
-            <span className="hidden sm:inline">Source</span>
-          </a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="flex flex-col items-center pb-16 pt-10 text-center sm:pt-20">
         <div className="relative animate-rise">
@@ -122,19 +87,17 @@ export default async function Home() {
         </p>
 
         <div className="mt-11 w-full animate-rise" style={{ animationDelay: '180ms' }}>
-          <DownloadButtons release={release} />
+          <HeroDownload version={release?.version} />
         </div>
       </section>
 
-      <Platforms release={release} />
+      <Platforms />
 
-      <CarAndTv release={release} />
+      <CarAndTv />
 
-      <Stats release={release} />
+      <Stats />
 
-      <SongFind release={release} />
-
-      <Obtainium />
+      <SongFind />
 
       <WhatsNew releases={notes} />
 
@@ -276,34 +239,13 @@ export default async function Home() {
         />
       </section>
 
-      <footer className="mt-auto flex flex-col items-center gap-2 border-t border-border/60 py-8 text-sm text-muted-foreground">
-        <p>
-          Noctorium plays from YouTube Music, SoundCloud, Bandcamp, Spotify, VK Music, Apple Music, Deezer and Tidal
-          using your own accounts.
-          It is not affiliated with any of them.
-        </p>
-        <p>
-          Something not working, or an idea?{' '}
-          <a href={DISCORD} className="text-accent underline decoration-dotted underline-offset-4 transition hover:text-foreground">
-            Tell us on Discord
-          </a>
-          . News of each release goes out on{' '}
-          <a href={TELEGRAM} className="text-accent underline decoration-dotted underline-offset-4 transition hover:text-foreground">
-            Telegram
-          </a>
-          .
-        </p>
-        <a href={GITHUB} className="transition hover:text-foreground">
-          github.com/Noctorium
-        </a>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
 
 /** Four ways in, the same library behind each. */
-function Platforms({ release }: { release: Release | null }) {
-  const cli = release?.cli ?? {};
+function Platforms() {
   return (
     <section className="pb-16">
       <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">Wherever you listen</h2>
@@ -315,11 +257,7 @@ function Platforms({ release }: { release: Release | null }) {
         <Platform icon={<Smartphone className="size-5" />} title="Phone" body="Android — and Android Auto and Android TV — with the lock screen, the notification, OnePlus's Live Alerts bubble and playing on with the screen off. Updates itself, or through Obtainium." />
         <Platform icon={<SquareTerminal className="size-5" />} title="Terminal" body="noctorium — the whole player in a terminal: covers, synced lyrics, every theme, by keyboard or mouse. It keeps itself up to date. Pick it in the installer or the one line above.">
           <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.windows?.url ?? RELEASES_PAGE}>Windows</a>
-            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.linux?.url ?? RELEASES_PAGE}>Linux</a>
-            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={cli.macArm?.url ?? RELEASES_PAGE}>macOS</a>
-          </div>
+          <GetIt href="/download#cli" label="Get the CLI" />
         </Platform>
         <Platform icon={<Globe className="size-5" />} title="Browser" body="Open the web player and play — nothing to install, no account, your likes and playlists kept in the browser.">
           <a className="mt-3 inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:brightness-110" href={PLAYER}>
@@ -338,9 +276,7 @@ function Platforms({ release }: { release: Release | null }) {
  * Android Auto and Android TV: the phone's own APK, which is Noctorium in the car and on a TV as well, from
  * Noctorium-Android-Auto and Noctorium-Android-TV built into Noctorium-Mobile.
  */
-function CarAndTv({ release }: { release: Release | null }) {
-  const apk = release?.direct.android?.url ?? RELEASES_PAGE;
-  const noctorium = OBTAINIUM_APPS[0];
+function CarAndTv() {
   return (
     <section id="car-and-tv" className="pb-16">
       <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">In the car and on the TV</h2>
@@ -364,14 +300,8 @@ function CarAndTv({ release }: { release: Release | null }) {
           body="Noctorium on the TV's home screen, with pages made for the remote: Now playing large, Home's rows, Search, your Library, the queue and radio. Sign in once from its Settings, or let a phone on the same network play on it through Connect."
         />
       </div>
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
-        <a className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110" href={apk}>
-          <Download className="size-4" />
-          Download the APK
-        </a>
-        <a href={obtainiumLink(noctorium.id, noctorium.name, noctorium.filter)} className="transition hover:brightness-110">
-          <Image src="/badge_obtainium.png" alt="Get Noctorium on Obtainium" width={124} height={48} />
-        </a>
+      <div className="mt-5 text-center">
+        <GetIt href="/download#android" label="Get it for Android" />
       </div>
     </section>
   );
@@ -383,16 +313,7 @@ function CarAndTv({ release }: { release: Release | null }) {
  * The downloads are only listed once a release has them: a link to a file that is not there yet falls back to
  * the releases page, which would not have it either.
  */
-function Stats({ release }: { release: Release | null }) {
-  const stats = release?.stats ?? {};
-  const files = [
-    ['Windows', stats.windows],
-    ['macOS', stats.macArm],
-    ['Intel Mac', stats.macIntel],
-    ['Linux', stats.linux],
-    ['Android', stats.android],
-  ] as const;
-  const available = files.filter(([, file]) => file);
+function Stats() {
   return (
     <section className="pb-16">
       <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
@@ -414,20 +335,7 @@ function Stats({ release }: { release: Release | null }) {
             >
               Open your statistics
             </a>
-            {available.length > 0 && (
-              <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>Noctorium Stats for</span>
-                {available.map(([label, file]) => (
-                  <a
-                    key={label}
-                    className="underline decoration-dotted underline-offset-4 hover:text-foreground"
-                    href={file!.url}
-                  >
-                    {label}
-                  </a>
-                ))}
-              </span>
-            )}
+            <GetIt href="/download#stats" label="Get Noctorium Stats" />
           </div>
         </div>
       </div>
@@ -435,19 +343,8 @@ function Stats({ release }: { release: Release | null }) {
   );
 }
 
-/**
- * Noctorium Song Find, which says which song is playing. Listed by file once a release has them, as Stats is.
- */
-function SongFind({ release }: { release: Release | null }) {
-  const files = release?.songFind ?? {};
-  const all = [
-    ['Windows', files.windows],
-    ['macOS', files.macArm],
-    ['Intel Mac', files.macIntel],
-    ['Linux', files.linux],
-    ['Android', files.android],
-  ] as const;
-  const available = all.filter(([, file]) => file);
+/** Noctorium Song Find, which says which song is playing. */
+function SongFind() {
   return (
     <section className="pb-16">
       <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
@@ -466,96 +363,8 @@ function SongFind({ release }: { release: Release | null }) {
             Windows, macOS, Linux and Android, and it updates itself like the rest of Noctorium.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
-            {available.length > 0 ? (
-              <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>Noctorium Song Find for</span>
-                {available.map(([label, file]) => (
-                  <a
-                    key={label}
-                    className="underline decoration-dotted underline-offset-4 hover:text-foreground"
-                    href={file!.url}
-                  >
-                    {label}
-                  </a>
-                ))}
-              </span>
-            ) : (
-              <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href={RELEASES_PAGE}>
-                From the releases page, from 0.27.0
-              </a>
-            )}
+            <GetIt href="/download#song-find" label="Get Noctorium Song Find" />
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/** An Obtainium link that adds the app with its APK filter already set, through Obtainium's own redirect page. */
-function obtainiumLink(id: string, name: string, apkFilterRegEx: string): string {
-  const config = {
-    id,
-    url: 'https://github.com/Noctorium/Noctorium-Installer',
-    author: 'Noctorium',
-    name,
-    additionalSettings: JSON.stringify({ apkFilterRegEx }),
-  };
-  return `https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/${encodeURIComponent(JSON.stringify(config))}`;
-}
-
-/**
- * Obtainium installs and updates Android apps from their releases. Every release carries all four APKs, so each
- * app is the same source with its own filter.
- */
-const OBTAINIUM_APPS = [
-  { name: 'Noctorium', id: 'app.noctorium', filter: '^Noctorium-[0-9].*[.]apk$' },
-  { name: 'Noctorium Stats', id: 'app.noctorium.stats', filter: '^Noctorium-Stats-[0-9].*[.]apk$' },
-  { name: 'Noctorium Song Find', id: 'app.noctorium.songfind', filter: '^Noctorium-Song-Find-[0-9].*[.]apk$' },
-  { name: 'Noctorium Installer', id: 'app.noctorium.installer', filter: '^Noctorium-Installer-android[.]apk$' },
-] as const;
-
-function Obtainium() {
-  return (
-    <section id="obtainium" className="pb-16">
-      <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
-        <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
-          <Smartphone className="size-5" />
-        </div>
-        <div className="min-w-0">
-          <h2 className="text-2xl font-bold tracking-tight text-foreground">On Android, with Obtainium</h2>
-          <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
-            Noctorium supports{' '}
-            <a className="underline decoration-dotted underline-offset-4 hover:text-foreground" href="https://github.com/ImranR98/Obtainium">
-              Obtainium
-            </a>
-            , which installs Android apps straight from their releases and keeps them up to date. Tap a button on a
-            phone or TV with Obtainium installed and it opens with the app already set up. Noctorium is the same app
-            for the phone, Android Auto and Android TV.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-4">
-            {OBTAINIUM_APPS.map((app) => (
-              <a
-                key={app.id}
-                href={obtainiumLink(app.id, app.name, app.filter)}
-                className="flex flex-col items-start gap-2 rounded-lg border border-border/70 p-3 transition hover:border-primary/40"
-              >
-                <span className="text-sm font-semibold text-foreground">{app.name}</span>
-                <Image src="/badge_obtainium.png" alt={`Get ${app.name} on Obtainium`} width={124} height={48} />
-              </a>
-            ))}
-          </div>
-          <p className="mt-5 max-w-2xl text-pretty text-sm leading-relaxed">
-            Or add it by hand: <strong className="text-foreground">Add app</strong>, the source{' '}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">https://github.com/Noctorium/Noctorium-Installer</code>,
-            and under <em>Filter APKs by regular expression</em>{' '}
-            {OBTAINIUM_APPS.map((app, i) => (
-              <span key={app.id}>
-                <code className="rounded bg-muted px-1 py-0.5 text-xs">{app.filter}</code> for {app.name}
-                {i < OBTAINIUM_APPS.length - 1 ? (i === OBTAINIUM_APPS.length - 2 ? ' or ' : ', ') : '.'}
-              </span>
-            ))}{' '}
-            Every release carries all four APKs, signed with Noctorium&apos;s key, and the filter picks the right one.
-          </p>
         </div>
       </div>
     </section>
@@ -582,5 +391,43 @@ function Feature({ icon, title, body }: { icon: React.ReactNode; title: string; 
       <h2 className="mt-4 font-semibold">{title}</h2>
       <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{body}</p>
     </div>
+  );
+}
+
+/** The one download on the home page: every way to get Noctorium is on /download, sorted by device. */
+function HeroDownload({ version }: { version?: string }) {
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Link
+          href="/download"
+          className="group inline-flex items-center justify-center gap-3 rounded-lg bg-primary px-8 py-4 font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          <Download className="size-5" />
+          Download
+          <ArrowRight className="size-4 transition group-hover:translate-x-0.5" />
+        </Link>
+        <a
+          href={PLAYER}
+          className="inline-flex items-center justify-center gap-3 rounded-lg border border-border bg-card/70 px-8 py-4 font-semibold backdrop-blur transition hover:-translate-y-0.5 hover:border-primary/50 hover:bg-card"
+        >
+          <Globe className="size-5" />
+          Play in the browser
+        </a>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        {version ? <>Version {version} · </> : null}Windows, macOS, Linux, Android and more
+      </p>
+    </div>
+  );
+}
+
+/** A section's way to its own downloads, on /download. */
+function GetIt({ href, label }: { href: string; label: string }) {
+  return (
+    <Link href={href} className="mt-3 inline-flex items-center gap-1.5 text-sm text-accent underline decoration-dotted underline-offset-4 transition hover:text-foreground">
+      {label}
+      <ArrowRight className="size-3.5" />
+    </Link>
   );
 }
