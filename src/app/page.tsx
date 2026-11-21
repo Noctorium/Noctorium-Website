@@ -42,7 +42,7 @@ import { WhatsNew } from '@/components/whats-new';
 import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, TELEGRAM, type Release } from '@/lib/release';
 
 /** The account service's own site, where the same statistics are read in a browser. */
-const STATS_SITE = 'https://noctorium-service.vercel.app';
+const STATS_SITE = 'https://service.noctorium.xyz';
 
 export default async function Home() {
   const [release, notes] = await Promise.all([latestRelease(), recentReleases(3)]);
