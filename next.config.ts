@@ -4,7 +4,7 @@ import type { NextConfig } from 'next';
 const SCRIPTS = 'https://raw.githubusercontent.com/Noctorium/Noctorium-Installer/main/scripts';
 
 /** The web player, which is a Vite page and a function of its own rather than part of this site. */
-const PLAYER = 'https://noctorium-music.vercel.app';
+const PLAYER = 'https://music.noctorium.xyz';
 
 const nextConfig: NextConfig = {
   // The download links point at whatever the latest release is, which is asked for at request time.

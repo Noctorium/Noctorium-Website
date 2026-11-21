@@ -9,7 +9,7 @@
 const RELEASE_API = 'https://api.github.com/repos/Noctorium/Noctorium-Installer/releases/latest';
 
 /** The hosted web player, which needs nothing installed. */
-export const PLAYER = 'https://noctorium-music.vercel.app';
+export const PLAYER = 'https://music.noctorium.xyz';
 
 export const RELEASES_PAGE = 'https://github.com/Noctorium/Noctorium-Installer/releases/latest';
 
