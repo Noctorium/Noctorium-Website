@@ -122,7 +122,8 @@ export default async function DownloadPage() {
       <section id="more" className="scroll-mt-8 pb-16">
         <h2 className="mb-2 text-center text-2xl font-bold tracking-tight">More from Noctorium</h2>
         <p className="mx-auto mb-6 max-w-lg text-center text-sm text-muted-foreground">Apps of their own, in the same release.</p>
-        <div className="grid gap-3 sm:grid-cols-2">
+        {/* items-start: a tile opened to its files grows alone, rather than stretching the one beside it. */}
+        <div className="grid items-start gap-3 sm:grid-cols-2">
           <AppTile id="cli" icon={<SquareTerminal className="size-5" />} title="Noctorium CLI" body="The whole player in a terminal, and noctorium web for every browser in the house."
             files={[['Windows', r?.cli.windows], ['Linux', r?.cli.linux], ['macOS, Apple silicon', r?.cli.macArm], ['macOS, Intel', r?.cli.macIntel]]} />
           <AppTile id="rust" icon={<Zap className="size-5" />} title="Noctorium Rust" body="The same player as one small native program."
@@ -148,7 +149,7 @@ function AppTile({ id, icon, title, body, files }: { id: string; icon: React.Rea
   const list = present(files);
   return (
     <details id={id} className="group scroll-mt-8 rounded-xl border border-border/70 bg-card/50 transition hover:border-primary/40 open:border-primary/40">
-      <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center gap-4 rounded-xl p-4 outline-none focus-visible:ring-2 focus-visible:ring-primary/60 [&::-webkit-details-marker]:hidden">
         <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">{icon}</span>
         <span className="min-w-0 flex-1">
           <span className="block font-semibold text-foreground">{title}</span>
