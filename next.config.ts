@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       // One address for both one-liners: PowerShell is given the PowerShell script, anything else the
-      // POSIX one. `irm https://noctorium.vercel.app/install | iex`, `curl -fsSL … | sh`.
+      // POSIX one. `irm https://noctorium.xyz/install | iex`, `curl -fsSL … | sh`.
       {
         source: '/install',
         has: [{ type: 'header', key: 'user-agent', value: '.*PowerShell.*' }],

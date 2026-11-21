@@ -71,8 +71,8 @@ export default async function DownloadPage() {
 
   const oneLine = (
     <div className="flex flex-col gap-2">
-      <CopyCommand label="Windows" command="irm https://noctorium.vercel.app/install | iex" />
-      <CopyCommand label="macOS, Linux" command="curl -fsSL https://noctorium.vercel.app/install | sh" />
+      <CopyCommand label="Windows" command="irm https://noctorium.xyz/install | iex" />
+      <CopyCommand label="macOS, Linux" command="curl -fsSL https://noctorium.xyz/install | sh" />
       <details className="mt-1">
         <summary className="cursor-pointer list-none text-center text-xs text-muted-foreground transition hover:text-foreground">
           <span className="underline decoration-dotted underline-offset-4">If this site is ever down: the same, straight from GitHub</span>

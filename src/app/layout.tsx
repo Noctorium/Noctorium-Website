@@ -11,7 +11,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? `https://${process.env.NEXT_PUBLIC_SITE_URL.replace(/^https?:\/\//, '')}`
   : process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : 'https://noctorium.vercel.app';
+    : 'https://noctorium.xyz';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
