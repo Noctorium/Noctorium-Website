@@ -53,6 +53,7 @@ export default function SupportersPage() {
             />
           </a>
           <h2 className="mt-6 text-2xl font-bold tracking-tight">{MVP.name}</h2>
+          <p className="mt-1 text-sm font-medium text-foreground/80">Bought the domain</p>
           <a href={MVP.link} target="_blank" rel="noopener noreferrer" className="mt-1 text-sm text-accent underline decoration-dotted underline-offset-4 hover:text-foreground">
             akumarin.nekoweb.org
           </a>
