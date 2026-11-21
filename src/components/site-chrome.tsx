@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Download, Github, MessagesSquare, Send } from 'lucide-react';
+import { Download, Github, Heart, MessagesSquare, Send } from 'lucide-react';
 import { TELEGRAM } from '@/lib/release';
 
 export const GITHUB = 'https://github.com/Noctorium';
@@ -24,6 +24,10 @@ export function SiteHeader() {
         <Link href="/download" className={`${navLink} font-medium text-foreground`}>
           <Download className="hidden size-4 min-[360px]:block" />
           <span>Download</span>
+        </Link>
+        <Link href="/supporters" aria-label="Supporters" className={navLink}>
+          <Heart className="size-4 text-accent" />
+          <span className="hidden sm:inline">Supporters</span>
         </Link>
         <a href={DISCORD} className={navLink}>
           <MessagesSquare className="hidden size-4 sm:block" />
