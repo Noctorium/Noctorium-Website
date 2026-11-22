@@ -46,7 +46,7 @@ function platforms(r: Release | null): Platform[] {
       id: 'android', label: 'Android', action: 'Download for Android',
       href: r?.direct.android?.url ?? fallback, size: r?.direct.android?.size,
       note: 'One app for the phone, Android Auto and Android TV, and it updates itself. For an older or smaller phone, Noctorium Lite is the same music in a fraction of the space.',
-      files: present([['Noctorium Lite — about 125 KB, Android 5 and up', r?.lite], ['Installer app', r?.installers.android]]),
+      files: present([['Noctorium Lite — about 130 KB, Android 5 and up', r?.lite], ['Installer app', r?.installers.android]]),
     },
     ...(r?.ios ? [{
       id: 'iphone' as const, label: 'iPhone', action: 'Download for iPhone and iPad',
@@ -56,7 +56,7 @@ function platforms(r: Release | null): Platform[] {
     }] : []),
     {
       id: 'browser', label: 'Browser', action: 'Open the web player', href: PLAYER,
-      note: 'YouTube Music and SoundCloud with nothing to install and no account, your likes and playlists kept in the browser. With your own accounts, noctorium web serves the same player from your computer to every browser in the house.',
+      note: 'YouTube Music and SoundCloud with nothing to install, your likes and playlists kept in the browser, and your Noctorium account if you want one. With your own accounts, noctorium web serves the same player from your computer to every browser in the house.',
       files: [],
     },
     {
@@ -131,7 +131,7 @@ export default async function DownloadPage() {
           <AppTile id="rust" icon={<Zap className="size-5" />} title="Noctorium Rust" body="The same player as one small native program."
             files={[['Windows', r?.rust.windows], ['Linux', r?.rust.linux], ['macOS, Apple silicon', r?.rust.macArm], ['macOS, Intel', r?.rust.macIntel]]} />
           {r?.lite && (
-            <AppTile id="lite" icon={<Feather className="size-5" />} title="Noctorium Lite" body="Noctorium for Android in about 125 KB, for any phone from Android 5."
+            <AppTile id="lite" icon={<Feather className="size-5" />} title="Noctorium Lite" body="Noctorium for Android in about 130 KB, for any phone from Android 5."
               files={[['Android', r.lite]]} />
           )}
           <AppTile id="stats" icon={<ChartColumn className="size-5" />} title="Noctorium Stats" body="Your listening, in figures, from your Noctorium account."

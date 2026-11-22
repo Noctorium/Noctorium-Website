@@ -231,7 +231,7 @@ export default async function Home() {
         <Feature
           icon={<KeyRound className="size-5" />}
           title="Sign in with Discord, Telegram or GitHub"
-          body="Your Noctorium account, if you want one, opens with Discord, Telegram, GitHub or an email and password — link several to the same account. In every Noctorium, press the button, check the code and press Allow in the browser; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
+          body="Your Noctorium account, if you want one, opens with Discord, Telegram, GitHub or an email and password — link several to the same account. Telegram signs you in inside the Telegram app: press Start, then Confirm, with no phone number typed anywhere. Every Noctorium has it — the desktop, the phone, the TV, the terminal, Noctorium Lite, the iPhone and the web player: press Sign in, check the code and press Allow; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
@@ -265,7 +265,7 @@ function Platforms() {
           <code className="mt-3 block rounded-md bg-background/70 px-3 py-2 text-xs text-accent">noctorium play daft punk</code>
           <GetIt href="/download#cli" label="Get the CLI" />
         </Platform>
-        <Platform icon={<Globe className="size-5" />} title="Browser" body="Open the web player and play — nothing to install, no account, your likes and playlists kept in the browser.">
+        <Platform icon={<Globe className="size-5" />} title="Browser" body="Open the web player and play — nothing to install, your likes and playlists kept in the browser, and your Noctorium account if you want your listening counted.">
           <a className="mt-3 inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:brightness-110" href={PLAYER}>
             Open the web player
           </a>
