@@ -34,6 +34,7 @@ import {
   TriangleAlert,
   Search,
   UserRound,
+  KeyRound,
   WandSparkles,
   ArrowRight,
 } from 'lucide-react';
@@ -226,6 +227,11 @@ export default async function Home() {
           icon={<History className="size-5" />}
           title="A history that stays home"
           body="Every song you listen to, newest first and by day, on your profile on the computer and the phone, to play again or clear. It is kept on the device it was played on and sent nowhere, not even to your Noctorium account. Scrobble to Last.fm, Libre.fm and ListenBrainz if you like, with the sign-in link there to copy into any browser, and the desktop shows what you are playing on Discord."
+        />
+        <Feature
+          icon={<KeyRound className="size-5" />}
+          title="Sign in with Discord, Telegram or GitHub"
+          body="Your Noctorium account, if you want one, opens with Discord, Telegram, GitHub or an email and password — link several to the same account. In every Noctorium, press the button, check the code and press Allow in the browser; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
