@@ -18,7 +18,7 @@ export function obtainiumLink(id: string, name: string, apkFilterRegEx: string):
  */
 export const OBTAINIUM_APPS = [
   { name: 'Noctorium', id: 'app.noctorium', filter: '^Noctorium-[0-9].*[.]apk$' },
-  // The same app on a TV or in a car, each with its own APK since 0.38.0: one of these on that device, not the phone's.
+  // The same app on a TV or in a car, each with its own APK since 0.38.1: one of these on that device, not the phone's.
   { name: 'Noctorium for TV', id: 'app.noctorium', filter: '^Noctorium-TV-[0-9].*[.]apk$' },
   { name: 'Noctorium for cars', id: 'app.noctorium', filter: '^Noctorium-Car-[0-9].*[.]apk$' },
   { name: 'Noctorium Lite', id: 'app.noctorium.lite', filter: '^Noctorium-Lite-[0-9].*[.]apk$' },

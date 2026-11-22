@@ -46,7 +46,7 @@ export type Release = {
     windowsMsi?: Download;
     /** Noctorium for phones, with Android Auto. */
     android?: Download;
-    /** Noctorium for TV, and for cars with Google built in: an APK each from 0.38.0, missing before. */
+    /** Noctorium for TV, and for cars with Google built in: an APK each from 0.38.1, missing before. */
     androidTv?: Download;
     androidCar?: Download;
     debian?: Download;

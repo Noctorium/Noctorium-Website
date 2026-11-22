@@ -286,7 +286,7 @@ function Platforms() {
 
 /**
  * Android Auto, in the phone's own APK; Android TV and cars with Google built in, each with an APK of its own since
- * 0.38.0, all built from Noctorium-Mobile with Noctorium-Android-Auto and Noctorium-Android-TV.
+ * 0.38.1, all built from Noctorium-Mobile with Noctorium-Android-Auto and Noctorium-Android-TV.
  */
 function CarAndTv() {
   return (
