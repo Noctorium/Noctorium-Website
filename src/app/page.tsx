@@ -230,8 +230,8 @@ export default async function Home() {
         />
         <Feature
           icon={<KeyRound className="size-5" />}
-          title="Sign in with Discord, Telegram or GitHub"
-          body="Your Noctorium account, if you want one, opens with Discord, Telegram, GitHub or an email and password — link several to the same account. Telegram signs you in inside the Telegram app: press Start, then Confirm, with no phone number typed anywhere. Every Noctorium has it — the desktop, the phone, the TV, the terminal, Noctorium Lite, the iPhone and the web player: press Sign in, check the code and press Allow; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
+          title="Sign in with Discord or Telegram"
+          body="Your Noctorium account, if you want one, opens with Discord, Telegram or an email and password — link them all to the same account. Telegram signs you in inside the Telegram app: press Start, then Confirm, with no phone number typed anywhere. Every Noctorium has it — the desktop, the phone, the TV, the terminal, Noctorium Lite, the iPhone and the web player: press Sign in, check the code and press Allow; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
