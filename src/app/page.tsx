@@ -229,6 +229,11 @@ export default async function Home() {
           body="Every song you listen to, newest first and by day, on your profile on the computer and the phone, to play again or clear. It is kept on the device it was played on and sent nowhere, not even to your Noctorium account. Scrobble to Last.fm, Libre.fm and ListenBrainz if you like, with the sign-in link there to copy into any browser, and the desktop shows what you are playing on Discord."
         />
         <Feature
+          icon={<AudioLines className="size-5" />}
+          title="Last.fm and ListenBrainz, linked once"
+          body="Link Last.fm and ListenBrainz to your Noctorium account — on its page, or by connecting them in any Noctorium while signed in — and every Noctorium you sign in to scrobbles there. The desktop, the phone, the TV, the terminal and Noctorium Rust connect them by themselves when you sign in; Noctorium Lite, the iPhone and the web player scrobble through your account, by Last.fm's own rule. The session and the token are kept encrypted."
+        />
+        <Feature
           icon={<KeyRound className="size-5" />}
           title="Sign in with Discord or Telegram"
           body="Your Noctorium account, if you want one, opens with Discord, Telegram or an email and password — link them all to the same account. Telegram signs you in inside the Telegram app: press Start, then Confirm, with no phone number typed anywhere. Every Noctorium has it — the desktop, the phone, the TV, the terminal, Noctorium Lite, the iPhone and the web player: press Sign in, check the code and press Allow; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
