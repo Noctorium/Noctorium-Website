@@ -44,7 +44,11 @@ export type Release = {
   direct: {
     windows?: Download;
     windowsMsi?: Download;
+    /** Noctorium for phones, with Android Auto. */
     android?: Download;
+    /** Noctorium for TV, and for cars with Google built in: an APK each from 0.38.0, missing before. */
+    androidTv?: Download;
+    androidCar?: Download;
     debian?: Download;
     fedora?: Download;
     arch?: Download;
@@ -219,7 +223,11 @@ export async function latestRelease(): Promise<Release | null> {
       direct: {
         windows: pick(assets, (n) => !installer(n) && n.endsWith('-setup.exe')),
         windowsMsi: pick(assets, (n) => n.endsWith('.msi')),
-        android: pick(assets, (n) => !installer(n) && !stats(n) && !songFind(n) && !lite(n) && n.endsWith('.apk')),
+        // By the whole shape: a version starts with a digit, which keeps Noctorium-TV-, -Car-, -Lite-, -Stats- and the
+        // rest from answering for the phone's Noctorium-<version>.apk.
+        android: pick(assets, (n) => /^noctorium-\d.*\.apk$/.test(n)),
+        androidTv: pick(assets, (n) => /^noctorium-tv-\d.*\.apk$/.test(n)),
+        androidCar: pick(assets, (n) => /^noctorium-car-\d.*\.apk$/.test(n)),
         debian: pick(assets, (n) => n.endsWith('.deb')),
         fedora: pick(assets, (n) => n.endsWith('.rpm')),
         arch: pick(assets, (n) => n.endsWith('.pkg.tar.zst')),

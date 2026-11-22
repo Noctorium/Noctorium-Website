@@ -45,8 +45,11 @@ function platforms(r: Release | null): Platform[] {
     {
       id: 'android', label: 'Android', action: 'Download for Android',
       href: r?.direct.android?.url ?? fallback, size: r?.direct.android?.size,
-      note: 'One app for the phone, Android Auto and Android TV, and it updates itself. For an older or smaller phone, Noctorium Lite is the same music in a fraction of the space.',
-      files: present([['Noctorium Lite — about 130 KB, Android 5 and up', r?.lite], ['Installer app', r?.installers.android]]),
+      note: 'Noctorium for phones, with Android Auto, and it updates itself. Android TV and cars with Google built in have a Noctorium of their own, below. For an older or smaller phone, Noctorium Lite is the same music in a fraction of the space.',
+      files: present([
+        ['Noctorium for Android TV', r?.direct.androidTv], ['Noctorium for cars with Google built in', r?.direct.androidCar],
+        ['Noctorium Lite — about 130 KB, Android 5 and up', r?.lite], ['Installer app', r?.installers.android],
+      ]),
     },
     ...(r?.ios ? [{
       id: 'iphone' as const, label: 'iPhone', action: 'Download for iPhone and iPad',

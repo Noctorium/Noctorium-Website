@@ -18,6 +18,9 @@ export function obtainiumLink(id: string, name: string, apkFilterRegEx: string):
  */
 export const OBTAINIUM_APPS = [
   { name: 'Noctorium', id: 'app.noctorium', filter: '^Noctorium-[0-9].*[.]apk$' },
+  // The same app on a TV or in a car, each with its own APK since 0.38.0: one of these on that device, not the phone's.
+  { name: 'Noctorium for TV', id: 'app.noctorium', filter: '^Noctorium-TV-[0-9].*[.]apk$' },
+  { name: 'Noctorium for cars', id: 'app.noctorium', filter: '^Noctorium-Car-[0-9].*[.]apk$' },
   { name: 'Noctorium Lite', id: 'app.noctorium.lite', filter: '^Noctorium-Lite-[0-9].*[.]apk$' },
   { name: 'Noctorium Stats', id: 'app.noctorium.stats', filter: '^Noctorium-Stats-[0-9].*[.]apk$' },
   { name: 'Noctorium Song Find', id: 'app.noctorium.songfind', filter: '^Noctorium-Song-Find-[0-9].*[.]apk$' },
@@ -32,7 +35,7 @@ export function ObtainiumButtons({ hasLite }: { hasLite: boolean }) {
       <div className="flex flex-wrap gap-3">
         {apps.map((app) => (
           <a
-            key={app.id}
+            key={app.name}
             href={obtainiumLink(app.id, app.name, app.filter)}
             className="flex flex-col items-start gap-2 rounded-lg border border-border/70 p-3 transition hover:border-primary/40"
           >
@@ -46,7 +49,7 @@ export function ObtainiumButtons({ hasLite }: { hasLite: boolean }) {
         <code className="break-all rounded bg-muted px-1 py-0.5 text-xs">https://github.com/Noctorium/Noctorium-Installer</code>,
         and under <em>Filter APKs by regular expression</em>{' '}
         {apps.map((app, i) => (
-          <span key={app.id}>
+          <span key={app.name}>
             <code className="rounded bg-muted px-1 py-0.5 text-xs">{app.filter}</code> for {app.name}
             {i < apps.length - 1 ? (i === apps.length - 2 ? ' or ' : ', ') : '.'}
           </span>

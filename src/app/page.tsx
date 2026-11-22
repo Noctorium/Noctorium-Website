@@ -7,6 +7,7 @@ import {
   AudioLines,
   BatteryCharging,
   Car,
+  CarFront,
   ChartColumn,
   Disc3,
   FileUp,
@@ -284,17 +285,18 @@ function Platforms() {
 }
 
 /**
- * Android Auto and Android TV: the phone's own APK, which is Noctorium in the car and on a TV as well, from
- * Noctorium-Android-Auto and Noctorium-Android-TV built into Noctorium-Mobile.
+ * Android Auto, in the phone's own APK; Android TV and cars with Google built in, each with an APK of its own since
+ * 0.38.0, all built from Noctorium-Mobile with Noctorium-Android-Auto and Noctorium-Android-TV.
  */
 function CarAndTv() {
   return (
     <section id="car-and-tv" className="pb-16">
       <h2 className="mb-2 text-center text-2xl font-bold tracking-tight sm:text-3xl">In the car and on the TV</h2>
       <p className="mx-auto mb-8 max-w-xl text-center text-muted-foreground">
-        The Android app is Noctorium for Android Auto and Android TV too — one APK, the same library and queue.
+        Android Auto is in the phone app. The TV and cars with Google built in have a Noctorium of their own — the same
+        library, queue and account.
       </p>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Platform
           icon={<Car className="size-5" />}
           title="Android Auto"
@@ -308,8 +310,18 @@ function CarAndTv() {
         <Platform
           icon={<Tv className="size-5" />}
           title="Android TV and Google TV"
-          body="Noctorium on the TV's home screen, with pages made for the remote: Now playing large, Home's rows, Search, your Library, the queue and radio. Sign in once from its Settings, or let a phone on the same network play on it through Connect."
+          body="Noctorium for TV, on the TV's home screen, with pages made for the remote: Now playing large, Home's rows, Search, your Library, the queue and radio. Sign in once from its Settings, or let a phone on the same network play on it through Connect."
         />
+        <Platform
+          icon={<CarFront className="size-5" />}
+          title="Cars with Google built in"
+          body="Noctorium for cars, installed on the car itself (Android Automotive): your music on the car's own screen, with no phone needed."
+        >
+          <p className="mt-3 text-xs text-muted-foreground">
+            Most cars only install apps from their own Play Store; it installs on cars and head units that allow apps
+            from elsewhere.
+          </p>
+        </Platform>
       </div>
       <div className="mt-5 text-center">
         <GetIt href="/download#android" label="Get it for Android" />
