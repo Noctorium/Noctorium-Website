@@ -44,7 +44,7 @@ import { WhatsNew } from '@/components/whats-new';
 import { latestRelease, PLAYER, recentReleases, RELEASES_PAGE, TELEGRAM, type Release } from '@/lib/release';
 
 /** The account service's own site, where the same statistics are read in a browser. */
-const STATS_SITE = 'https://service.noctorium.xyz';
+const STATS_SITE = 'https://stats.noctorium.xyz';
 
 export default async function Home() {
   const [release, notes] = await Promise.all([latestRelease(), recentReleases(3)]);
@@ -238,6 +238,11 @@ export default async function Home() {
           icon={<KeyRound className="size-5" />}
           title="Sign in with Discord or Telegram"
           body="Your Noctorium account, if you want one, opens with Discord, Telegram or an email and password — link them all to the same account. Telegram signs you in inside the Telegram app: press Start, then Confirm, with no phone number typed anywhere. Every Noctorium has it — the desktop, the phone, the TV, the terminal, Noctorium Lite, the iPhone and the web player: press Sign in, check the code and press Allow; on a TV or in a terminal, do it on your phone. Then what you play shows as your Discord status and in your Telegram bio, from any device, with no computer needed."
+        />
+        <Feature
+          icon={<Lock className="size-5" />}
+          title="Two-step verification"
+          body="Turn it on at account.noctorium.xyz: a code from an authenticator app (with backup codes for a lost phone), a code the Noctorium bot sends you on Telegram, or both. With both on, pick either one at each sign-in, or turn on strict mode to need both. It is asked at every sign-in — email, Discord or Telegram — on the website and in every Noctorium."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
