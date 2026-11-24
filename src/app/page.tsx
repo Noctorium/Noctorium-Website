@@ -245,6 +245,11 @@ export default async function Home() {
           body="Turn it on at account.noctorium.xyz: a code from an authenticator app (with backup codes for a lost phone), a code the Noctorium bot sends you on Telegram, or both. With both on, pick either one at each sign-in, or turn on strict mode to need both. It is asked at every sign-in — email, Discord or Telegram — on the website and in every Noctorium."
         />
         <Feature
+          icon={<Send className="size-5" />}
+          title="Your stats in Telegram"
+          body="@StatsNoctoriumBot shows what you listen to, right in Telegram: /stats, /top, /recent and /now, with buttons for the last week, month, 90 days, year or all of it. Its Stats button opens the full page with charts, and typing @StatsNoctoriumBot in any chat shares your top songs or what is playing now. Sign in to Noctorium with Telegram first."
+        />
+        <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
           body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. Connect has a tab of its own: every device on your network and what it is playing, and Play here or Play on any of them, at the same second with the whole queue. While the music plays elsewhere, your own player is its remote. A switch at the top of the tab turns Connect off, and then the device neither looks for your others nor can be seen."
