@@ -250,6 +250,11 @@ export default async function Home() {
           body="@StatsNoctoriumBot shows what you listen to, right in Telegram: /stats, /top, /recent and /now, with buttons for the last week, month, 90 days, year or all of it. Its Stats button opens the full page with charts, and typing @StatsNoctoriumBot in any chat shares your top songs or what is playing now. Sign in to Noctorium with Telegram first."
         />
         <Feature
+          icon={<UserRound className="size-5" />}
+          title="Your account, inside Noctorium"
+          body="Your picture sits on Home — upload one, or use your Discord or Telegram picture — and tapping it opens your Noctorium account right in the app: change your name, email or password, or delete the account, with your two-step code if it is on. The gear beside it opens Settings; prefer Settings in the sidebar or bottom bar, as before? One setting moves it back. On the phone, Queue can leave the bottom bar too."
+        />
+        <Feature
           icon={<MonitorSmartphone className="size-5" />}
           title="Desktop and phone, together"
           body="Windows, macOS, Linux — Debian, Fedora, Arch, an AppImage or a Flatpak — and Android, built from one shared core so they behave the same rather than nearly the same. Connect has a tab of its own: every device on your network and what it is playing, and Play here or Play on any of them, at the same second with the whole queue. While the music plays elsewhere, your own player is its remote. A switch at the top of the tab turns Connect off, and then the device neither looks for your others nor can be seen."
