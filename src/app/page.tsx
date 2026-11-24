@@ -252,7 +252,7 @@ export default async function Home() {
         <Feature
           icon={<UserRound className="size-5" />}
           title="Your account, inside Noctorium"
-          body="Your picture sits on Home — upload one, or use your Discord or Telegram picture — and tapping it opens your Noctorium account right in the app: change your name, email or password, or delete the account, with your two-step code if it is on. The gear beside it opens Settings; prefer Settings in the sidebar or bottom bar, as before? One setting moves it back. On the phone, Queue can leave the bottom bar too."
+          body="Your picture sits on Home — upload one, or use your Discord or Telegram picture — and tapping it opens your Noctorium account right in the app: change your name, email or password, or delete the account, with your two-step code if it is on. The gear beside it opens Settings; prefer Settings in the sidebar or bottom bar, as before? One setting moves it back. On the phone, Queue can leave the bottom bar too. On the desktop, pick which pages the sidebar keeps, and list your playlists there too, scrolling on their own."
         />
         <Feature
           icon={<MonitorSmartphone className="size-5" />}
