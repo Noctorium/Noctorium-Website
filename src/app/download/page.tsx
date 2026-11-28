@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { AudioLines, ChartColumn, ChevronDown, Feather, ShieldCheck, SquareTerminal, Zap } from 'lucide-react';
+import { AudioLines, ChartColumn, ChevronDown, Feather, ShieldCheck, SquareTerminal, UserRound, Zap } from 'lucide-react';
 import { CopyCommand } from '@/components/copy-command';
 import { DownloadPicker, type Platform } from '@/components/download-picker';
 import { ObtainiumButtons } from '@/components/obtainium';
@@ -139,6 +139,8 @@ export default async function DownloadPage() {
           )}
           <AppTile id="stats" icon={<ChartColumn className="size-5" />} title="Noctorium Stats" body="Your listening, in figures, from your Noctorium account."
             files={[['Windows', r?.stats.windows], ['Linux', r?.stats.linux], ['macOS, Apple silicon', r?.stats.macArm], ['macOS, Intel', r?.stats.macIntel], ['Android', r?.stats.android]]} />
+          <AppTile id="account" icon={<UserRound className="size-5" />} title="Noctorium Account" body="Your account's picture, password, two-step and scrobbling, without a browser."
+            files={[['Windows', r?.account.windows], ['Linux', r?.account.linux], ['macOS, Apple silicon', r?.account.macArm], ['macOS, Intel', r?.account.macIntel], ['Android', r?.account.android]]} />
           <AppTile id="song-find" icon={<AudioLines className="size-5" />} title="Noctorium Song Find" body="Which song is this? From the microphone or what is playing."
             files={[['Windows', r?.songFind.windows], ['Linux', r?.songFind.linux], ['macOS, Apple silicon', r?.songFind.macArm], ['macOS, Intel', r?.songFind.macIntel], ['Android', r?.songFind.android]]} />
         </div>

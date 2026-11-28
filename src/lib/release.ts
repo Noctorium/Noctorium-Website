@@ -73,6 +73,14 @@ export type Release = {
     macIntel?: Download;
     android?: Download;
   };
+  /** Noctorium Account: the account page as an app. Missing before 0.43.0. */
+  account: {
+    windows?: Download;
+    linux?: Download;
+    macArm?: Download;
+    macIntel?: Download;
+    android?: Download;
+  };
   /** Noctorium Rust: the same player as one native program. */
   rust: {
     windows?: Download;
@@ -205,6 +213,7 @@ export async function latestRelease(): Promise<Release | null> {
     const player = (n: string) => n.startsWith('noctorium-cli-');
     // Noctorium Stats brings a second .apk that is not an installer, so the player's needs telling apart.
     const stats = (n: string) => n.startsWith('noctorium-stats-');
+    const account = (n: string) => n.startsWith('noctorium-account-');
     // And Noctorium Song Find a third.
     const songFind = (n: string) => n.startsWith('noctorium-song-find-');
     const rust = (n: string) => n.startsWith('noctorium-rust-');
@@ -248,6 +257,13 @@ export async function latestRelease(): Promise<Release | null> {
         macArm: pick(assets, (n) => stats(n) && n.endsWith('macos-arm64.zip')),
         macIntel: pick(assets, (n) => stats(n) && n.endsWith('macos-x64.zip')),
         android: pick(assets, (n) => stats(n) && n.endsWith('.apk')),
+      },
+      account: {
+        windows: pick(assets, (n) => account(n) && n.endsWith('windows-x64.zip')),
+        linux: pick(assets, (n) => account(n) && n.endsWith('linux-x64.tar.gz')),
+        macArm: pick(assets, (n) => account(n) && n.endsWith('macos-arm64.zip')),
+        macIntel: pick(assets, (n) => account(n) && n.endsWith('macos-x64.zip')),
+        android: pick(assets, (n) => account(n) && n.endsWith('.apk')),
       },
       rust: {
         windows: pick(assets, (n) => rust(n) && n.endsWith('windows-x64.zip')),

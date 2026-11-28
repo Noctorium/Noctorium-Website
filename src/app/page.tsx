@@ -99,6 +99,10 @@ export default async function Home() {
 
       <Stats />
 
+      <PlayerMode />
+
+      <AccountApp />
+
       <SongFind />
 
       <WhatsNew releases={notes} />
@@ -362,9 +366,10 @@ function Stats() {
           <h2 className="text-2xl font-bold tracking-tight text-foreground">Your listening, counted</h2>
           <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
             Sign in to a Noctorium account, if you want one, and the player counts what you play on your computer and
-            your phone. Read it on the statistics site, or in Noctorium Stats, an app of its own: the last week, month
-            or year or all of it, your top songs and artists, how the services share your listening, the hours and
-            days you listen most, and how many days in a row.
+            your phone. Tap your picture in any Noctorium and choose Stats, or read it on the statistics site or in
+            Noctorium Stats, an app of its own: the last week, month, 90 days or year or all of it, your streak of days
+            in a row, a day-by-day chart, the hours and days you listen most, your top songs and artists, how the
+            services share your listening, and what you played last.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
             <a
@@ -374,6 +379,59 @@ function Stats() {
               Open your statistics
             </a>
             <GetIt href="/download#stats" label="Get Noctorium Stats" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Player mode: a spare phone as a music player, with Noctorium as its home screen. */
+function PlayerMode() {
+  return (
+    <section className="pb-16">
+      <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
+        <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
+          <Smartphone className="size-5" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Player mode: a phone that is a music player</h2>
+          <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
+            Turn an old phone into a music player. Noctorium becomes its home screen, and the phone shows the clock
+            and battery, the song playing with big buttons, Search, Library and the queue, and Wi-Fi and Bluetooth for
+            your headphones. Nothing else. It&apos;s in the phone app, under Settings, On this phone, Player mode;
+            hold the clock to leave it.
+          </p>
+          <p className="mt-3 flex max-w-2xl items-start gap-2 text-sm text-foreground/90">
+            <TriangleAlert className="mt-0.5 size-4 shrink-0 text-accent" />
+            Use a spare phone, not the one you use every day: your other apps leave its home screen.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+            <GetIt href="/download#android" label="Get it for Android" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Noctorium Account, the account page as an app of its own. */
+function AccountApp() {
+  return (
+    <section className="pb-16">
+      <div className="flex flex-col gap-5 rounded-xl border border-border/70 bg-card/50 p-6 text-muted-foreground backdrop-blur transition hover:border-primary/40 hover:bg-card/80 sm:flex-row sm:p-8">
+        <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
+          <KeyRound className="size-5" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Your account, in an app</h2>
+          <p className="mt-2 max-w-2xl text-pretty leading-relaxed">
+            Noctorium Account does what the account page does, without a browser: your picture, name, email and
+            password; two-step verification with an authenticator app or Telegram; the Last.fm and ListenBrainz your
+            players scrobble to; and deleting the account. For Windows, macOS, Linux and Android.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+            <GetIt href="/download#account" label="Get Noctorium Account" />
           </div>
         </div>
       </div>
